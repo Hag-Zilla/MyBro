@@ -7,6 +7,7 @@ Repository dedicated to GitHub Copilot customization and instruction governance.
 - Global Copilot instructions: [.github/copilot-instructions.md](.github/copilot-instructions.md)
 - Path-specific instructions: [.github/instructions/](.github/instructions)
 - Reusable prompt templates: [.github/prompts/](.github/prompts)
+- Golden prompt scenarios: [.github/golden-prompts/](.github/golden-prompts)
 - Contribution rules for instruction changes: [CONTRIBUTING.md](CONTRIBUTING.md)
 - CI checks for instruction quality and consistency: [.github/workflows/docs-quality.yml](.github/workflows/docs-quality.yml)
 
@@ -58,6 +59,13 @@ applyTo: "glob/pattern/**/*.py"
 - Keep prompts focused, reusable, and concise
 - Include expected output style and constraints
 
+### Golden Prompt Scenarios
+- Location: [.github/golden-prompts/](.github/golden-prompts)
+- Purpose: behavior regression checks for instruction quality
+- Usage: run scenario prompts in Copilot Chat and compare against expected behavior
+- Scoring rubric: [.github/golden-prompts/SCORECARD.md](.github/golden-prompts/SCORECARD.md)
+- Reporting template: [.github/golden-prompts/report-template.md](.github/golden-prompts/report-template.md)
+
 ## Local Validation
 
 Recommended quick validation before opening a PR:
@@ -78,5 +86,4 @@ CI runs these checks automatically on every push and pull request.
 
 ## Roadmap
 
-- Add golden prompt scenarios for behavior regression checks
 - Add change log for instruction evolution and compatibility notes
