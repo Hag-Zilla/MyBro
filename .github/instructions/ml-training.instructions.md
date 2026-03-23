@@ -2,28 +2,28 @@
 applyTo: "src/ml/training/**/*.py,src/ml/**/*train*.py"
 ---
 
-## Instructions pour code de training MLOps
+## Instructions for MLOps Training Code
 
-### Validation et datos
-- **Cross-validation obligatoire**: utiliser `sklearn.model_selection.cross_validate` ou `KFold`, `StratifiedKFold` selon contexte.
-- **Train/Val/Test split minimal**: 70%/15%/15 au minimum; documenter if "applyTo": `src/ml/**` then justifier autre ratio.
-- **Data validation**: vérifier shape, null values, outliers avant training. Utiliser le module `logging` pour tracer.
-- **Reproducibilité**: fixer tous les random seeds (`np.random.seed()`, `random.seed()`, `torch.manual_seed()` si ML framework).
+### Validation and Data
+- **Cross-validation mandatory**: use `sklearn.model_selection.cross_validate` or `KFold`, `StratifiedKFold` depending on context.
+- **Minimal Train/Val/Test split**: 70%/15%/15 minimum; document if `applyTo` is `src/ml/**` then justify other ratio.
+- **Data validation**: check shape, null values, outliers before training. Use the `logging` module to trace.
+- **Reproducibility**: fix all random seeds (`np.random.seed()`, `random.seed()`, `torch.manual_seed()` if using ML framework).
 
-### Hyperparamètres et suivi
-- **Hyperparamètres documentés**: inclure dans docstring de fonction, format dict ou config object, pas magic numbers.
-- **MLflow ou équivalent**: logger métriques (`accuracy`, `f1`, `loss`), params, model artifact pour chaque run.
-- **Early stopping et callbacks**: implémenter monitoring validation loss, patience > 3 epochs.
+### Hyperparameters and Tracking
+- **Documented hyperparameters**: include in function docstring, dict or config object format, no magic numbers.
+- **MLflow or equivalent**: log metrics (`accuracy`, `f1`, `loss`), params, model artifact for each run.
+- **Early stopping and callbacks**: implement validation loss monitoring, patience > 3 epochs.
 
-### Tests et validation modèle
-- Ajouter test `pytest` pour en:
-  - Vérifier output shape et type du modèle (ex: `assert y_pred.shape == (n_samples,)`)
-  - Vérifier no NaN/Inf après training
-  - Sanity check: modèle doit surpasser baseline (ex: 60% acc min sur dataset simple)
-- **Data drift monitoring**: comparer distribution train vs validation via `scipy.stats` ou Kolmogorov-Smirnov.
-- **Model card / README**: documenter version modèle, params, performance metrics, limitations.
+### Model Tests and Validation
+- Add `pytest` test to:
+  - Verify model output shape and type (e.g., `assert y_pred.shape == (n_samples,)`)
+  - Verify no NaN/Inf after training
+  - Sanity check: model must surpass baseline (e.g., min 60% acc on simple dataset)
+- **Data drift monitoring**: compare train vs validation distribution via `scipy.stats` or Kolmogorov-Smirnov.
+- **Model card / README**: document model version, params, performance metrics, limitations.
 
-### Logging et observabilité
-- Utiliser `logging` avec niveaux INFO (progression), WARNING (data issues), ERROR (failures).
-- Inclure timestamps, parametrization, metrics en structuré (pas print).
+### Logging and Observability
+- Use `logging` with INFO (progress), WARNING (data issues), ERROR (failures) levels.
+- Include timestamps, parametrization, metrics in structured format (no print).
 

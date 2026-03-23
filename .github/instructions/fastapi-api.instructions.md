@@ -2,21 +2,21 @@
 applyTo: "src/api/**/*.py,src/routes/**/*.py,app/**/*.py"
 ---
 
-## Instructions pour code FastAPI
+## Instructions for FastAPI Code
 
-### Modèles Pydantic et validation
-- **Pydantic v2**: utiliser `BaseModel` pour tous les request/response bodies.
-- **Validation type hints**: int, str, float, list[str], Optional[X], etc. Copilot doit générer validation automatique.
-- **Field constraints**: documenter via `Field(..., description="...", min_length=1, max_length=100)` pour OpenAPI.
-- **Exemples**: inclure `example` ou `examples` dans `Field()` pour Swagger docs.
+### Pydantic Models and Validation
+- **Pydantic v2**: use `BaseModel` for all request/response bodies.
+- **Type hint validation**: int, str, float, list[str], Optional[X], etc. Copilot must generate automatic validation.
+- **Field constraints**: document via `Field(..., description="...", min_length=1, max_length=100)` for OpenAPI.
+- **Examples**: include `example` or `examples` in `Field()` for Swagger docs.
 
-### Endpoints et routes
-- **Docstrings obligatoires**: chaque route Route handler doit inclure docstring Google-style avec description, paramètres, réponses.
-- **Status codes**: définir explicitement `status_code` dans `@app.post(..., status_code=201)` etc.
-- **Séparation routes**: grouper dans `APIRouter()` par domaine (ex: `/auth`, `/models`, `/inference`),pas tout dans main.
-- **Error handling**: utiliser `HTTPException(status_code=400, detail="...")` + custom exception handlers pour uniformité.
+### Endpoints and Routes
+- **Mandatory docstrings**: each route handler must include Google-style docstring with description, parameters, responses.
+- **Status codes**: explicitly define `status_code` in `@app.post(..., status_code=201)` etc.
+- **Route separation**: group in `APIRouter()` by domain (e.g., `/auth`, `/models`, `/inference`), not everything in main.
+- **Error handling**: use `HTTPException(status_code=400, detail="...")` + custom exception handlers for uniformity.
 
-### Tests
+### Testing
 - **TestClient pytest**: 
   ```python
   from fastapi.testclient import TestClient
@@ -25,22 +25,22 @@ applyTo: "src/api/**/*.py,src/routes/**/*.py,app/**/*.py"
       response = client.get("/health")
       assert response.status_code == 200
   ```
-- **Couvrir**: happy path, invalid input, edge cases, error cases.
-- **Fixtures**: utiliser `@pytest.fixture` pour client, mock services, databases.
+- **Coverage**: happy path, invalid input, edge cases, error cases.
+- **Fixtures**: use `@pytest.fixture` for client, mock services, databases.
 
-### Observabilité et monitoring
-- **Middleware logging**: ajouter pour tracer request/response (temps, statut, utilisateur).
-- **Prometheus metrics**: instrumenter avec `prometheus_client` pour compter requests, mesurer latence.
-- **Errors et exceptions**: logger avec contexte (user_id, endpoint), pas juste le message.
+### Observability and Monitoring
+- **Middleware logging**: add to trace request/response (time, status, user).
+- **Prometheus metrics**: instrument with `prometheus_client` to count requests, measure latency.
+- **Errors and exceptions**: log with context (user_id, endpoint), not just the message.
 
-### Sécurité
-- **CORS**: configurer explicitement `add_middleware(CORSMiddleware, allow_origins=[...])` avec whitelist.
-- **Auth**: utiliser `Depends()` avec OAuth2PasswordBearer ou JWT, valider token systématiquement.
-- **Input sanitization**: ne pas faire confiance aux user inputs, valider + nettoyer.
-- **No secrets in code**: credentials via env vars ou Vault, pas hardcodés.
+### Security
+- **CORS**: explicitly configure `add_middleware(CORSMiddleware, allow_origins=[...])` with whitelist.
+- **Auth**: use `Depends()` with OAuth2PasswordBearer or JWT, validate token systematically.
+- **Input sanitization**: do not trust user inputs, validate + clean.
+- **No secrets in code**: credentials via env vars or Vault, not hardcoded.
 
 ### Performance
-- **Rate limiting**: ajouter `slowapi` ou custom middleware si endpoint expose publique.
-- **Async**: utiliser `async def` pour I/O-bound handlers (DB, API calls).
-- **Caching**: implémenter `@lru_cache` ou Redis pour données stables.
+- **Rate limiting**: add `slowapi` or custom middleware if endpoint is public.
+- **Async**: use `async def` for I/O-bound handlers (DB, API calls).
+- **Caching**: implement `@lru_cache` or Redis for stable data.
 

@@ -1,26 +1,26 @@
-## Instructions personnalisées GitHub Copilot — Français
+## GitHub Copilot Custom Instructions — English
 
-But
-: Fournir des suggestions cohérentes avec les conventions du dépôt, accélérer la rédaction de code et aider les contributeurs sur Python, MLOps, déploiement et observabilité.
+Purpose
+: Provide suggestions consistent with repository conventions, accelerate code writing, and assist contributors on Python, MLOps, deployment, and observability.
 
-Contexte du dépôt
-- Stack technique: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
-- Public cible: data scientists, ingénieurs MLOps, développeurs backend.
+Repository Context
+- Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
+- Target Audience: data scientists, MLOps engineers, backend developers.
 
-Préférences générales
-- Style de code: Respecter PEP 8, noms explicites, fonctions courtes (<= 50 lignes), type hints quand possible. Utiliser un formatteur automatique pour garantir la conformité (préférer `black` + `isort`).
-- Docstrings: Toutes les fonctions et classes doivent inclure une docstring conforme à PEP 257; documenter paramètres, valeurs de retour et exceptions. Préférer le style Google ou NumPy.
-- Tests: Préférer `pytest`; viser une couverture minimale acceptable (ex: 80% pour modules critiques).
-- Logging: Utiliser le module `logging` avec niveaux adaptés; ne pas « print » en production.
-- Sécurité: Ne jamais générer ni proposer d'insérer des secrets (clé API, mots de passe). Utiliser des variables d'environnement et des solutions de vault.
+General Preferences
+- Code Style: Follow PEP 8, explicit names, short functions (<= 50 lines), type hints when possible. Use an automatic formatter to ensure compliance (prefer `black` + `isort`).
+- Docstrings: All functions and classes must include a docstring compliant with PEP 257; document parameters, return values, and exceptions. Prefer Google or NumPy style.
+- Testing: Prefer `pytest`; target minimum acceptable coverage (e.g., 80% for critical modules).
+- Logging: Use the `logging` module with appropriate levels; do not use `print` in production.
+- Security: Never generate or propose inserting secrets (API keys, passwords). Use environment variables and vault solutions.
 
-Outils recommandés
-- Formatage automatique: `black` (configurable via `pyproject.toml`).
-- Tri des imports: `isort`.
-- Linting: `ruff` ou `flake8` pour détecter violations PEP8 et erreurs courantes.
-- Hooks git: utiliser `pre-commit` pour exécuter `black`, `isort` et `ruff/flake8` avant chaque commit.
+Recommended Tools
+- Automatic Formatting: `black` (configurable via `pyproject.toml`).
+- Import Sorting: `isort`.
+- Linting: `ruff` or `flake8` to detect PEP8 violations and common errors.
+- Git Hooks: use `pre-commit` to run `black`, `isort`, and `ruff/flake8` before each commit.
 
-Exemples de commandes (local)
+Example Commands (Local)
 ```bash
 python -m pip install --user black isort ruff pre-commit
 pre-commit install
@@ -29,76 +29,76 @@ isort .
 ruff check .
 ```
 
-Docker et conteneurisation
-- Fournir des Dockerfiles légers et reproductibles (multi-stage builds si besoin).
-- Exposer uniquement les ports nécessaires; définir `USER` non-root quand possible.
-- Inclure instructions pour builder et exécuter localement.
+Docker and Containerization
+- Provide lightweight and reproducible Dockerfiles (multi-stage builds if needed).
+- Expose only necessary ports; set `USER` non-root when possible.
+- Include instructions to build and run locally.
 
-Kubernetes et déploiement
-- Préférer des manifests Helm ou kustomize templates minimalistes.
-- Toujours proposer requests/limits pour CPU et mémoire.
-- Suggérer probes (`readiness`, `liveness`) et stratégies de déploiement (rolling updates).
+Kubernetes and Deployment
+- Prefer minimal Helm manifests or kustomize templates.
+- Always propose requests/limits for CPU and memory.
+- Suggest probes (`readiness`, `liveness`) and deployment strategies (rolling updates).
 
 FastAPI
-- Utiliser Pydantic pour la validation des modèles d'entrée/sortie.
-- Documenter les routes via OpenAPI (docstrings + types).
-- Proposer des patterns pour tests d'API (client TestClient + fixtures).
+- Use Pydantic for input/output model validation.
+- Document routes via OpenAPI (docstrings + types).
+- Propose patterns for API testing (TestClient + fixtures).
 
-Observabilité (Prometheus / Grafana / Loki)
-- Proposer métriques applicatives pertinentes (latence, erreurs, compteurs).
-- Ajouter instrumentation basique (Prometheus client) et exemples de dashboard Grafana.
-- Suggérer format de logs structurés (JSON) compatible Loki.
+Observability (Prometheus / Grafana / Loki)
+- Propose relevant application metrics (latency, errors, counters).
+- Add basic instrumentation (Prometheus client) and Grafana dashboard examples.
+- Suggest structured log format (JSON) compatible with Loki.
 
-Bonnes pratiques MLOps
-- Séparer code de formation et code de service (inférence).
-- Fournir exemples de CI pour training et déploiement (ex: GitHub Actions).
-- Suggérer validation des modèles (tests unitaires + tests d'intégration de prédiction).
+MLOps Best Practices
+- Separate training code from service code (inference).
+- Provide CI examples for training and deployment (e.g., GitHub Actions).
+- Suggest model validation (unit tests + prediction integration tests).
 
-Restrictions et interdits
-- Ne pas générer: secrets, clés d'API, mots de passe, ou instructions pour contourner la sécurité.
-- Éviter suggestions qui hardcodent des chemins locaux non reproductibles.
+Restrictions and Prohibitions
+- Do not generate: secrets, API keys, passwords, or instructions to bypass security.
+- Avoid suggestions that hardcode non-reproducible local paths.
 
-Usage opérationnel
-- Ce fichier doit rester à la racine `.github/copilot-instructions.md` pour être pris en compte.
-- Pour proposer une modification: ouvrir une PR petite et explicite, inclure tests et instructions de validation.
+Operational Usage
+- This file must remain at the root `.github/copilot-instructions.md` to be recognized.
+- To propose a modification: open a small and explicit PR, include tests and validation instructions.
 
 ---
 
-### Instructions par chemin (path-specific)
+### Path-Specific Instructions
 
-Créer des fichiers `.github/instructions/NAME.instructions.md` pour ajouter des instructions spécifiques à certains dossiers/modules.
+Create `.github/instructions/NAME.instructions.md` files to add specific instructions for certain folders/modules.
 
-Exemple **`.github/instructions/ml-training.instructions.md`**:
+Example **`.github/instructions/ml-training.instructions.md`**:
 ```yaml
 ---
 applyTo: "src/ml/training/**/*.py"
 ---
 
-Code de training: cross-validation obligatoire, hyperparamètres documentés, tests de dérive.
-Validation split minimal: 70/20/10 (train/val/test).
+Training code: cross-validation mandatory, hyperparameters documented, drift tests.
+Minimal validation split: 70/15/15 (train/val/test).
 ```
 
-Exemple **`.github/instructions/fastapi.instructions.md`**:
+Example **`.github/instructions/fastapi.instructions.md`**:
 ```yaml
 ---
 applyTo: "src/api/**/*.py"
 ---
 
-FastAPI: Pydantic obligatoire pour modèles entrée/sortie.
-Documenter chaque endpoint (docstring + types).
-Ajouter tests TestClient pour la validation des réponses.
+FastAPI: Pydantic mandatory for input/output models.
+Document each endpoint (docstring + types).
+Add TestClient tests for response validation.
 ```
 
-### Prompt files (réutilisables)
+### Prompt Files (Reusable)
 
-Créer des templates de prompts réutilisables dans `.github/prompts/` et les utiliser via l'icône paperclip en chat.
+Create reusable prompt templates in `.github/prompts/` and use them via the paperclip icon in chat.
 
-D'abord, activer dans VS Code workspace settings:
+First, enable in VS Code workspace settings:
 ```json
 "chat.promptFiles": true
 ```
 
-Exemple **`.github/prompts/code-review.prompt.md`**:
+Example **`.github/prompts/code-review.prompt.md`**:
 ```markdown
 Review this code for:
 - PEP 8 compliance and style
@@ -112,44 +112,44 @@ See standards: #file:.github/copilot-instructions.md
 
 ---
 
-**Comment demander à Copilot**
+**How to Ask Copilot**
 
-- Donnez un but clair: expliquer l'objectif recherché et les contraintes (compatibilité Python, dépendances, limites de performance).
-- Fournissez des exemples d'entrée/sortie si possible (format des données, types attendus).
-- Indiquez le niveau de détail souhaité: "code uniquement", "code + explication brève" ou "code + tests".
-- Précisez les fichiers ou modules concernés, et si la modification doit être rétrocompatible.
+- Provide a clear objective: explain the goal and constraints (Python compatibility, dependencies, performance limits).
+- Provide input/output examples if possible (data format, expected types).
+- Indicate the desired level of detail: "code only", "code + brief explanation", or "code + tests".
+- Specify the relevant files or modules, and whether the modification must be backward compatible.
 
-**Format de réponse attendu**
+**Expected Response Format**
 
-- Fournir une implémentation concise et testable, avec docstrings conformes (PEP 257) et annotations de type.
-- Ajouter un petit test `pytest` quand la fonctionnalité est non-triviale.
-- Pour les changements d'infrastructure, fournir le manifest complet (`Dockerfile`, `helm` chart snippet) et une brève note d'utilisation.
-- Pour les commandes et instructions, utiliser des blocs de code avec le bon langage (bash, Dockerfile, yaml).
-- Ne jamais inclure de secrets ou de valeurs sensibles en clair.
+- Provide a concise and testable implementation, with PEP 257-compliant docstrings and type annotations.
+- Add a small `pytest` test when the feature is non-trivial.
+- For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart snippet) and a brief usage note.
+- For commands and instructions, use code blocks with the correct language (bash, Dockerfile, yaml).
+- Never include secrets or sensitive values in plain text.
 
-**Exemples de prompts efficaces**
+**Examples of Effective Prompts**
 
-- "Écris une fonction `normalize_df(df: pd.DataFrame) -> pd.DataFrame` qui normalise les colonnes numériques. Inclut une docstring style NumPy et un test pytest minimal."
-- "Génère un `Dockerfile` multistage pour une app FastAPI (module `app:app`) avec Uvicorn et expose le port 8000."
-- "Propose un test d'intégration FastAPI utilisant `TestClient` pour l'endpoint `/predict`."
-- "Ajoute instrumentation Prometheus pour compter les requêtes HTTP et mesurer la latence."
-- "Donne un manifest Helm simple pour déployer un service FastAPI avec requests/limits et probes."
+- "Write a function `normalize_df(df: pd.DataFrame) -> pd.DataFrame` that normalizes numeric columns. Include NumPy-style docstring and a minimal pytest test."
+- "Generate a multistage `Dockerfile` for a FastAPI app (module `app:app`) with Uvicorn and expose port 8000."
+- "Propose a FastAPI integration test using `TestClient` for the `/predict` endpoint."
+- "Add Prometheus instrumentation to count HTTP requests and measure latency."
+- "Provide a simple Helm manifest to deploy a FastAPI service with requests/limits and probes."
 
-**Exclusions et bonnes pratiques**
+**Exclusions and Best Practices**
 
-- Ne pas modifier directement les workflows CI/CD ou les secrets; proposer des PRs et des instructions de validation.
-- Éviter les chemins locaux non reproductibles et les dépendances non déclarées.
-- Préférer les changements atomiques et testés; chaque PR doit inclure des tests ou une justification.
+- Do not directly modify CI/CD workflows or secrets; propose PRs and validation instructions.
+- Avoid non-reproducible local paths and undeclared dependencies.
+- Prefer atomic and tested changes; each PR must include tests or a justification.
 
-**Conventions PR / commit**
+**PR / Commit Conventions**
 
-- Préférer des PRs petites et ciblées avec titre clair et description des changements.
-- Messages de commit concis: `feat:`, `fix:`, `chore:` suivis d'une courte description.
+- Prefer small and targeted PRs with a clear title and description of changes.
+- Concise commit messages: `feat:`, `fix:`, `chore:` followed by a brief description.
 
-### Vérification des instructions appliquées
+### Verifying Applied Instructions
 
-Pour confirmer que Copilot utilise les instructions:
-1. Soumettre une requête en Copilot Chat.
-2. En bas du Chat, consulter la liste **"References"**.
-3. Si `.github/copilot-instructions.md` (ou une instruction path-specific) est listée, c'est qu'elle est active.
+To confirm that Copilot is using the instructions:
+1. Submit a request in Copilot Chat.
+2. At the bottom of the Chat, check the **"References"** list.
+3. If `.github/copilot-instructions.md` (or a path-specific instruction) is listed, it is active.
 
