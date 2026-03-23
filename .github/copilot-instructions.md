@@ -64,6 +64,54 @@ Usage opérationnel
 
 ---
 
+### Instructions par chemin (path-specific)
+
+Créer des fichiers `.github/instructions/NAME.instructions.md` pour ajouter des instructions spécifiques à certains dossiers/modules.
+
+Exemple **`.github/instructions/ml-training.instructions.md`**:
+```yaml
+---
+applyTo: "src/ml/training/**/*.py"
+---
+
+Code de training: cross-validation obligatoire, hyperparamètres documentés, tests de dérive.
+Validation split minimal: 70/20/10 (train/val/test).
+```
+
+Exemple **`.github/instructions/fastapi.instructions.md`**:
+```yaml
+---
+applyTo: "src/api/**/*.py"
+---
+
+FastAPI: Pydantic obligatoire pour modèles entrée/sortie.
+Documenter chaque endpoint (docstring + types).
+Ajouter tests TestClient pour la validation des réponses.
+```
+
+### Prompt files (réutilisables)
+
+Créer des templates de prompts réutilisables dans `.github/prompts/` et les utiliser via l'icône paperclip en chat.
+
+D'abord, activer dans VS Code workspace settings:
+```json
+"chat.promptFiles": true
+```
+
+Exemple **`.github/prompts/code-review.prompt.md`**:
+```markdown
+Review this code for:
+- PEP 8 compliance and style
+- Type hints completeness
+- Docstring coverage (all functions/classes)
+- Security issues (no hardcoded secrets)
+- Performance and test coverage
+
+See standards: #file:.github/copilot-instructions.md
+```
+
+---
+
 **Comment demander à Copilot**
 
 - Donnez un but clair: expliquer l'objectif recherché et les contraintes (compatibilité Python, dépendances, limites de performance).
@@ -97,4 +145,11 @@ Usage opérationnel
 
 - Préférer des PRs petites et ciblées avec titre clair et description des changements.
 - Messages de commit concis: `feat:`, `fix:`, `chore:` suivis d'une courte description.
+
+### Vérification des instructions appliquées
+
+Pour confirmer que Copilot utilise les instructions:
+1. Soumettre une requête en Copilot Chat.
+2. En bas du Chat, consulter la liste **"References"**.
+3. Si `.github/copilot-instructions.md` (ou une instruction path-specific) est listée, c'est qu'elle est active.
 
