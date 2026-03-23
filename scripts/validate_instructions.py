@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from pathlib import Path
 import re
-import sys
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -55,7 +54,10 @@ def validate_instruction_file(path: Path) -> list[str]:
 
     if re.search(r"[\u00C0-\u017F]", text):
         # Heuristic to catch accented words commonly indicating non-English text.
-        errors.append("Non-ASCII accented characters detected; keep instruction files English-only.")
+        errors.append(
+            "Non-ASCII accented characters detected; "
+            "keep instruction files English-only."
+        )
 
     return errors
 
