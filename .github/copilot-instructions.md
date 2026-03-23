@@ -3,6 +3,21 @@
 Purpose
 : Provide suggestions consistent with repository conventions, accelerate code writing, and assist contributors on Python, MLOps, deployment, and observability.
 
+Repository Type
+: This repository is dedicated to Copilot customization, instruction quality, and prompt governance.
+
+Instruction Priority
+1. System and platform policies
+2. User request in current chat
+3. Global instructions in this file
+4. Path-specific instructions in `.github/instructions/`
+5. Prompt templates in `.github/prompts/`
+
+Conflict Resolution
+- Prefer the more specific rule when two rules conflict.
+- If specificity is equal, prefer the most recent update with explicit rationale.
+- Prefer practical and flexible guidance unless strict behavior is clearly required.
+
 Repository Context
 - Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
 - Target Audience: data scientists, MLOps engineers, backend developers.
@@ -68,6 +83,13 @@ Operational Usage
 
 Create `.github/instructions/NAME.instructions.md` files to add specific instructions for certain folders/modules.
 
+Recommended section structure for path-specific files:
+- Purpose
+- Scope
+- Guidelines
+- Examples
+- Validation Checklist
+
 Example **`.github/instructions/ml-training.instructions.md`**:
 ```yaml
 ---
@@ -92,6 +114,12 @@ Add TestClient tests for response validation.
 ### Prompt Files (Reusable)
 
 Create reusable prompt templates in `.github/prompts/` and use them via the paperclip icon in chat.
+
+Prompt quality guidelines:
+- State the objective in one clear sentence.
+- Define constraints and exclusions explicitly.
+- Specify expected output format.
+- Keep examples realistic and concise.
 
 First, enable in VS Code workspace settings:
 ```json

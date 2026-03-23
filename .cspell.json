@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Copilot",
+    "MLOps",
+    "FastAPI",
+    "Pydantic",
+    "Prometheus",
+    "Grafana",
+    "Loki",
+    "kustomize",
+    "Uvicorn",
+    "applyTo",
+    "frontmatter",
+    "healthcheck"
+  ],
+  "ignorePaths": [
+    "LICENSE"
+  ]
+}

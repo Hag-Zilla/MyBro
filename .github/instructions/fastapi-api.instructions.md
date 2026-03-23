@@ -2,45 +2,61 @@
 applyTo: "src/api/**/*.py,src/routes/**/*.py,app/**/*.py"
 ---
 
-## Instructions for FastAPI Code
+## Purpose
 
-### Pydantic Models and Validation
-- **Pydantic v2**: use `BaseModel` for all request/response bodies.
-- **Type hint validation**: int, str, float, list[str], Optional[X], etc. Copilot must generate automatic validation.
-- **Field constraints**: document via `Field(..., description="...", min_length=1, max_length=100)` for OpenAPI.
-- **Examples**: include `example` or `examples` in `Field()` for Swagger docs.
+Guide Copilot output for FastAPI modules with pragmatic, production-oriented defaults.
 
-### Endpoints and Routes
-- **Mandatory docstrings**: each route handler must include Google-style docstring with description, parameters, responses.
-- **Status codes**: explicitly define `status_code` in `@app.post(..., status_code=201)` etc.
-- **Route separation**: group in `APIRouter()` by domain (e.g., `/auth`, `/models`, `/inference`), not everything in main.
-- **Error handling**: use `HTTPException(status_code=400, detail="...")` + custom exception handlers for uniformity.
+## Scope
+
+Applies to FastAPI API code in `src/api/`, `src/routes/`, and `app/`.
+
+## Guidelines
+
+### Pydantic and Validation
+- Prefer Pydantic v2 `BaseModel` for request and response payloads.
+- Use explicit type hints for model fields and endpoint signatures.
+- Prefer `Field()` constraints for OpenAPI clarity and input quality.
+- Add `example` or `examples` where it improves API discoverability.
+
+### Endpoints and Routing
+- Prefer one domain per `APIRouter()` instead of a monolithic main module.
+- Set explicit `status_code` when behavior is known.
+- Add concise docstrings for route handlers, especially for non-trivial logic.
+- Use `HTTPException` and shared exception handlers for consistent API errors.
 
 ### Testing
-- **TestClient pytest**: 
-  ```python
-  from fastapi.testclient import TestClient
-  client = TestClient(app)
-  def test_endpoint_success():
-      response = client.get("/health")
-      assert response.status_code == 200
-  ```
-- **Coverage**: happy path, invalid input, edge cases, error cases.
-- **Fixtures**: use `@pytest.fixture` for client, mock services, databases.
+- Prefer `pytest` with `TestClient` for endpoint validation.
+- Cover happy path, invalid input, and at least one edge case.
+- Use fixtures for reusable client setup and dependency overrides.
 
-### Observability and Monitoring
-- **Middleware logging**: add to trace request/response (time, status, user).
-- **Prometheus metrics**: instrument with `prometheus_client` to count requests, measure latency.
-- **Errors and exceptions**: log with context (user_id, endpoint), not just the message.
+### Observability
+- Prefer structured logging for request lifecycle events.
+- Add request count and latency metrics with Prometheus instrumentation when relevant.
+- Include endpoint context in exception logs.
 
-### Security
-- **CORS**: explicitly configure `add_middleware(CORSMiddleware, allow_origins=[...])` with whitelist.
-- **Auth**: use `Depends()` with OAuth2PasswordBearer or JWT, validate token systematically.
-- **Input sanitization**: do not trust user inputs, validate + clean.
-- **No secrets in code**: credentials via env vars or Vault, not hardcoded.
+### Security and Performance
+- Configure CORS explicitly and avoid permissive defaults in production.
+- Prefer dependency-injected auth (`Depends`) for protected endpoints.
+- Use `async def` for I/O-bound handlers.
+- Consider rate limiting and caching for public or high-traffic endpoints.
 
-### Performance
-- **Rate limiting**: add `slowapi` or custom middleware if endpoint is public.
-- **Async**: use `async def` for I/O-bound handlers (DB, API calls).
-- **Caching**: implement `@lru_cache` or Redis for stable data.
+## Examples
+
+```python
+from fastapi import APIRouter, status
+
+router = APIRouter(prefix="/health", tags=["health"])
+
+
+@router.get("", status_code=status.HTTP_200_OK)
+async def health() -> dict[str, str]:
+    """Return service health status."""
+    return {"status": "ok"}
+```
+
+## Validation Checklist
+
+- Frontmatter `applyTo` is present and valid.
+- Guidance is actionable and not contradictory with global instructions.
+- Content remains English-only.
 

@@ -2,28 +2,53 @@
 applyTo: "src/ml/training/**/*.py,src/ml/**/*train*.py"
 ---
 
-## Instructions for MLOps Training Code
+## Purpose
 
-### Validation and Data
-- **Cross-validation mandatory**: use `sklearn.model_selection.cross_validate` or `KFold`, `StratifiedKFold` depending on context.
-- **Minimal Train/Val/Test split**: 70%/15%/15 minimum; document if `applyTo` is `src/ml/**` then justify other ratio.
-- **Data validation**: check shape, null values, outliers before training. Use the `logging` module to trace.
-- **Reproducibility**: fix all random seeds (`np.random.seed()`, `random.seed()`, `torch.manual_seed()` if using ML framework).
+Guide Copilot output for ML training code with reproducible and testable practices.
+
+## Scope
+
+Applies to training modules under `src/ml/training/` and files matching `src/ml/**/*train*.py`.
+
+## Guidelines
+
+### Data and Validation
+- Prefer cross-validation (`cross_validate`, `KFold`, `StratifiedKFold`) for robust evaluation.
+- Use at least a 70/15/15 train/validation/test split unless there is a documented reason not to.
+- Validate dataset shape, null values, and obvious outliers before training.
+- Set random seeds for reproducibility.
 
 ### Hyperparameters and Tracking
-- **Documented hyperparameters**: include in function docstring, dict or config object format, no magic numbers.
-- **MLflow or equivalent**: log metrics (`accuracy`, `f1`, `loss`), params, model artifact for each run.
-- **Early stopping and callbacks**: implement validation loss monitoring, patience > 3 epochs.
+- Document hyperparameters in function docstrings or config objects.
+- Prefer experiment tracking (MLflow or equivalent) for metrics, params, and artifacts.
+- Consider early stopping for iterative training when validation loss can be monitored.
 
-### Model Tests and Validation
-- Add `pytest` test to:
-  - Verify model output shape and type (e.g., `assert y_pred.shape == (n_samples,)`)
-  - Verify no NaN/Inf after training
-  - Sanity check: model must surpass baseline (e.g., min 60% acc on simple dataset)
-- **Data drift monitoring**: compare train vs validation distribution via `scipy.stats` or Kolmogorov-Smirnov.
-- **Model card / README**: document model version, params, performance metrics, limitations.
+### Testing and Model Quality
+- Add `pytest` tests for output shape and prediction type.
+- Add checks to avoid NaN or Inf values in training outputs.
+- Include a simple baseline comparison when feasible.
+- Consider drift checks between training and validation distributions.
 
 ### Logging and Observability
-- Use `logging` with INFO (progress), WARNING (data issues), ERROR (failures) levels.
-- Include timestamps, parametrization, metrics in structured format (no print).
+- Use `logging` instead of print statements.
+- Include meaningful context for progress, warnings, and failures.
+
+## Examples
+
+```python
+import random
+import numpy as np
+
+
+def set_seed(seed: int = 42) -> None:
+    """Set all reproducibility seeds used by the training pipeline."""
+    random.seed(seed)
+    np.random.seed(seed)
+```
+
+## Validation Checklist
+
+- Frontmatter `applyTo` is present and valid.
+- Guidance is actionable and not contradictory with global instructions.
+- Content remains English-only.
 
