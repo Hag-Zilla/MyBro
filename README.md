@@ -101,6 +101,27 @@ CI runs these checks automatically on every push and pull request.
 3. Ensure no rule contradictions are introduced
 4. Open a PR with clear rationale and impact
 
+## Using These Instructions in Another Repository
+
+Run this from the **root of any new local git repo** to fetch the Copilot
+configuration directly from MyBro on GitHub:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Hag-Zilla/MyBro/main/scripts/bootstrap-copilot.sh | bash
+```
+
+The script fetches and places:
+
+- `.github/copilot-instructions.md` — global rules
+- `AGENTS.md` — agent governance rules
+- `.github/instructions/` — all path-specific instruction files
+- `.github/prompts/` — all reusable prompt templates
+
+Validation infrastructure (workflows, pre-commit config, linting configs) is
+intentionally **not** copied — it stays in MyBro only.
+
+Re-run the command at any time to pull updates from MyBro.
+
 ## Roadmap
 
 - Add change log for instruction evolution and compatibility notes
