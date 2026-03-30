@@ -49,10 +49,8 @@ applyTo: "glob/pattern/**/*.py"
 
 - Recommended section order:
 	- Purpose
-	- Scope
 	- Guidelines
 	- Examples
-	- Validation Checklist
 
 ### Prompt Templates
 - Location: [.github/prompts/](.github/prompts)
