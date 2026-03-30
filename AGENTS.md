@@ -13,6 +13,12 @@ This repository is dedicated to GitHub Copilot customization: instruction files,
 - Prefer minimal, targeted changes over broad refactors.
 - Each change must be independently testable or documented if a test is not applicable.
 
+### Custom Rules (User Preferences)
+- Never perform a `git commit`, `git push`, or any version control write operation on behalf of the user. Propose the command instead.
+- Be direct and honest. Do not flatter or soften incorrect assumptions — if the user is wrong, say so clearly and explain why.
+- Always ask clarifying questions before proceeding when a request is ambiguous, incomplete, or could be interpreted in multiple ways.
+- When any file in the repository is created, moved, renamed, or deleted, update `README.md` to reflect the change before considering the task complete.
+
 ### Code Changes
 - Follow PEP 8 and include type hints on all function signatures.
 - All functions and classes must have a PEP 257-compliant docstring.

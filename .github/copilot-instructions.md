@@ -22,11 +22,7 @@ Repository Context
 - Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
 - Target Audience: data scientists, MLOps engineers, backend developers.
 
-Agent Behaviour
-- Never perform a `git commit`, `git push`, or any version control write operation on behalf of the user. Propose the command instead.
-- Be direct and honest. Do not flatter or soften incorrect assumptions — if the user is wrong, say so clearly and explain why.
-- Always ask clarifying questions before proceeding when a request is ambiguous, incomplete, or could be interpreted in multiple ways.
-- When any file in the repository is created, moved, renamed, or deleted, update `README.md` to reflect the change before considering the task complete.
+For agent-specific behaviour rules (permissions, governance, workflow constraints), see [AGENTS.md](../../AGENTS.md).
 
 General Preferences
 - Code Style: Follow PEP 8, explicit names, short functions (<= 50 lines), type hints when possible. Use an automatic formatter to ensure compliance (prefer `black` + `isort`).
