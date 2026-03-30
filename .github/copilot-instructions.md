@@ -25,7 +25,7 @@ quality, and prompt governance.
 - Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
 - Target Audience: data scientists, MLOps engineers, backend developers.
 
-For agent-specific behaviour rules (permissions, governance, workflow constraints), see [AGENTS.md](../../AGENTS.md).
+For agent-specific behaviour rules (permissions, governance, workflow constraints), see [AGENTS.md](../AGENTS.md).
 
 ## General Preferences
 
