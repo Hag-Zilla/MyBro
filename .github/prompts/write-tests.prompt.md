@@ -3,6 +3,7 @@
 Generate unit tests for the following code using `pytest`:
 
 1. **Test structure**:
+
    ```python
    def test_<function>_<scenario>():
        # Arrange
@@ -21,6 +22,7 @@ Generate unit tests for the following code using `pytest`:
    - Error cases (invalid inputs, exceptions)
 
 3. **Fixtures** for reusable setup:
+
    ```python
    @pytest.fixture
    def sample_data():
@@ -28,6 +30,7 @@ Generate unit tests for the following code using `pytest`:
    ```
 
 4. **Mocking** external dependencies (DB, API calls):
+
    ```python
    from unittest.mock import patch
    @patch('module.external_function')
@@ -36,6 +39,7 @@ Generate unit tests for the following code using `pytest`:
    ```
 
 5. **Parametrization** for multiple inputs:
+
    ```python
    @pytest.mark.parametrize("input,expected", [...])
    def test_multiple(input, expected):

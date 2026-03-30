@@ -11,7 +11,8 @@ Add Prometheus metrics to the selected code following these requirements:
    - Pattern: `<service>_<noun>_<unit>_total` for counters (e.g., `api_requests_total`).
    - Pattern: `<service>_<noun>_<unit>` for histograms (e.g., `api_request_duration_seconds`).
 
-3. **Labels**: use low-cardinality labels only (e.g., `method`, `endpoint`, `status_code`). Never use user IDs or raw query strings as labels.
+3. **Labels**: use low-cardinality labels only (e.g., `method`, `endpoint`, `status_code`).
+   Never use user IDs or raw query strings as labels.
 
 4. **Placement**: define metrics at **module level**, never inside a function or class method.
 

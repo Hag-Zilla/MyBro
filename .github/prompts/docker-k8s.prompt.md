@@ -5,6 +5,7 @@ Generate Docker and Kubernetes manifests following these practices:
 ## Docker
 
 1. **Multi-stage builds** to minimize image size:
+
    ```dockerfile
    FROM python:3.11 as builder
    # Install dependencies
@@ -18,6 +19,7 @@ Generate Docker and Kubernetes manifests following these practices:
    - Pin package versions in requirements.txt
 
 3. **Health checks**:
+
    ```dockerfile
    HEALTHCHECK --interval=30s CMD python /app/health_check.py
    ```
@@ -25,6 +27,7 @@ Generate Docker and Kubernetes manifests following these practices:
 ## Kubernetes
 
 1. **Resource requests/limits**:
+
    ```yaml
    resources:
      requests:
@@ -36,6 +39,7 @@ Generate Docker and Kubernetes manifests following these practices:
    ```
 
 2. **Probes** (readiness + liveness):
+
    ```yaml
    livenessProbe:
      httpGet:
@@ -50,6 +54,7 @@ Generate Docker and Kubernetes manifests following these practices:
    ```
 
 3. **Rolling updates**:
+
    ```yaml
    strategy:
      type: RollingUpdate
@@ -59,6 +64,7 @@ Generate Docker and Kubernetes manifests following these practices:
    ```
 
 4. **Environment & ConfigMap**:
+
    ```yaml
    envFrom:
      - configMapRef:

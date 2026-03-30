@@ -34,10 +34,12 @@ When specificity is equal, prefer the most recent and clearly justified update.
 ## File Conventions
 
 ### Global Instructions
+
 - Location: [.github/copilot-instructions.md](.github/copilot-instructions.md)
 - Scope: repository-wide behavior and standards
 
 ### Path-Specific Instructions
+
 - Location: [.github/instructions/](.github/instructions)
 - Required frontmatter:
 
@@ -48,16 +50,18 @@ applyTo: "glob/pattern/**/*.py"
 ```
 
 - Recommended section order:
-	- Purpose
-	- Guidelines
-	- Examples
+  - Purpose
+  - Guidelines
+  - Examples
 
 ### Prompt Templates
+
 - Location: [.github/prompts/](.github/prompts)
 - Keep prompts focused, reusable, and concise
 - Include expected output style and constraints
 
 ### Golden Prompt Scenarios
+
 - Location: [.github/golden-prompts/](.github/golden-prompts)
 - Purpose: behavior regression checks for instruction quality
 - Usage: run scenario prompts in Copilot Chat and compare against expected behavior
@@ -69,18 +73,21 @@ applyTo: "glob/pattern/**/*.py"
 Recommended quick validation before opening a PR:
 
 1. **Install pre-commit hooks** (one-time setup):
+
    ```bash
    pip install pre-commit
    pre-commit install
    ```
 
 2. **Hooks run automatically on commit**, checking:
+
    - Markdown structure and style
    - Spelling for instruction files
    - JSON and YAML syntax
    - Custom instruction validation
 
 3. **Or run manually**:
+
    ```bash
    pre-commit run --all-files
    ```

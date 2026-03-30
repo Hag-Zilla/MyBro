@@ -1,92 +1,115 @@
 ## GitHub Copilot Custom Instructions — English
 
-Purpose
-: Provide suggestions consistent with repository conventions, accelerate code writing, and assist contributors on Python, MLOps, deployment, and observability.
+**Purpose**: Provide suggestions consistent with repository conventions, accelerate code
+writing, and assist contributors on Python, MLOps, deployment, and observability.
 
-Repository Type
-: This repository is dedicated to Copilot customization, instruction quality, and prompt governance.
+**Repository Type**: This repository is dedicated to Copilot customization, instruction
+quality, and prompt governance.
 
-Instruction Priority
+## Instruction Priority
+
 1. System and platform policies
 2. User request in current chat
 3. Global instructions in this file
 4. Path-specific instructions in `.github/instructions/`
 5. Prompt templates in `.github/prompts/`
 
-Conflict Resolution
+## Conflict Resolution
+
 - Prefer the more specific rule when two rules conflict.
 - If specificity is equal, prefer the most recent update with explicit rationale.
 - Prefer practical and flexible guidance unless strict behavior is clearly required.
 
-Repository Context
+## Repository Context
+
 - Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
 - Target Audience: data scientists, MLOps engineers, backend developers.
 
 For agent-specific behaviour rules (permissions, governance, workflow constraints), see [AGENTS.md](../../AGENTS.md).
 
-General Preferences
-- Code Style: Follow PEP 8, explicit names, short functions (<= 50 lines), type hints when possible. Use an automatic formatter to ensure compliance (prefer `black` + `isort`).
-- Docstrings: All functions and classes must include a docstring compliant with PEP 257; document parameters, return values, and exceptions. Prefer Google or NumPy style.
-- Testing: Prefer `pytest`; target minimum acceptable coverage (e.g., 80% for critical modules).
-- Logging: Use the `logging` module with appropriate levels; do not use `print` in production.
-- Security: Never generate or propose inserting secrets (API keys, passwords). Use environment variables and vault solutions.
+## General Preferences
 
-Recommended Tools
+- Code Style: Follow PEP 8, explicit names, short functions (<= 50 lines), type hints
+  when possible. Use an automatic formatter to ensure compliance (prefer `black` +
+  `isort`).
+- Docstrings: All functions and classes must include a docstring compliant with
+  PEP 257; document parameters, return values, and exceptions. Prefer Google or NumPy
+  style.
+- Testing: Prefer `pytest`; target minimum acceptable coverage (e.g., 80% for critical
+  modules).
+- Logging: Use the `logging` module with appropriate levels; do not use `print` in
+  production.
+- Security: Never generate or propose inserting secrets (API keys, passwords). Use
+  environment variables and vault solutions.
+
+## Recommended Tools
+
 - Automatic Formatting: `black` (configurable via `pyproject.toml`).
 - Import Sorting: `isort`.
 - Linting: `ruff` or `flake8` to detect PEP8 violations and common errors.
-- Git Hooks: use `pre-commit` to run `black`, `isort`, and `ruff/flake8` before each commit.
+- Git Hooks: use `pre-commit` to run `black`, `isort`, and `ruff/flake8` before each
+  commit.
 
-Docker and Containerization
+## Docker and Containerization
+
 - Provide lightweight and reproducible Dockerfiles (multi-stage builds if needed).
 - Expose only necessary ports; set `USER` non-root when possible.
 - Include instructions to build and run locally.
 
-Kubernetes and Deployment
+## Kubernetes and Deployment
+
 - Prefer minimal Helm manifests or kustomize templates.
 - Always propose requests/limits for CPU and memory.
 - Suggest probes (`readiness`, `liveness`) and deployment strategies (rolling updates).
 
-FastAPI
+## FastAPI
+
 - Use Pydantic for input/output model validation.
 - Document routes via OpenAPI (docstrings + types).
 - Propose patterns for API testing (TestClient + fixtures).
 
-Observability (Prometheus / Grafana / Loki)
+## Observability (Prometheus / Grafana / Loki)
+
 - Propose relevant application metrics (latency, errors, counters).
 - Add basic instrumentation (Prometheus client) and Grafana dashboard examples.
 - Suggest structured log format (JSON) compatible with Loki.
 
-MLOps Best Practices
+## MLOps Best Practices
+
 - Separate training code from service code (inference).
 - Provide CI examples for training and deployment (e.g., GitHub Actions).
 - Suggest model validation (unit tests + prediction integration tests).
 
-Restrictions and Prohibitions
+## Restrictions and Prohibitions
+
 - Do not generate: secrets, API keys, passwords, or instructions to bypass security.
 - Avoid suggestions that hardcode non-reproducible local paths.
 
-Operational Usage
+## Operational Usage
+
 - This file must remain at the root `.github/copilot-instructions.md` to be recognized.
-- To propose a modification: open a small and explicit PR, include tests and validation instructions.
+- To propose a modification: open a small and explicit PR, include tests and validation
+  instructions.
 
----
+## Expected Response Format
 
-**Expected Response Format**
-
-- Provide a concise and testable implementation, with PEP 257-compliant docstrings and type annotations.
+- Provide a concise and testable implementation, with PEP 257-compliant docstrings and
+  type annotations.
 - Add a small `pytest` test when the feature is non-trivial.
-- For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart snippet) and a brief usage note.
-- For commands and instructions, use code blocks with the correct language (bash, Dockerfile, yaml).
+- For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart
+  snippet) and a brief usage note.
+- For commands and instructions, use code blocks with the correct language (bash,
+  Dockerfile, yaml).
 - Never include secrets or sensitive values in plain text.
 
-**Exclusions and Best Practices**
+## Exclusions and Best Practices
 
-- Do not directly modify CI/CD workflows or secrets; propose PRs and validation instructions.
+- Do not directly modify CI/CD workflows or secrets; propose PRs and validation
+  instructions.
 - Avoid non-reproducible local paths and undeclared dependencies.
 - Prefer atomic and tested changes; each PR must include tests or a justification.
 
-**PR / Commit Conventions**
+## PR / Commit Conventions
 
 - Prefer small and targeted PRs with a clear title and description of changes.
 - Concise commit messages: `feat:`, `fix:`, `chore:` followed by a brief description.

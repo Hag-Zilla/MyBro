@@ -9,9 +9,12 @@ Guide Copilot for observability code covering Prometheus metrics, structured log
 ## Guidelines
 
 ### Prometheus Metrics
+
 - Define metrics at module level (not inside functions) to avoid re-registration errors.
-- Use the correct metric type: `Counter` for counts, `Histogram` for latency/size, `Gauge` for live values.
-- Always add a `labelnames` list; avoid high-cardinality labels (e.g., user IDs or raw URLs).
+- Use the correct metric type: `Counter` for counts, `Histogram` for latency/size, `Gauge`
+  for live values.
+- Always add a `labelnames` list; avoid high-cardinality labels (e.g., user IDs or raw
+  URLs).
 - Expose metrics on a dedicated `/metrics` endpoint; never mix it with business routes.
 
 ```python
@@ -31,8 +34,10 @@ REQUEST_LATENCY = Histogram(
 ```
 
 ### Structured Logging (Loki)
+
 - Use JSON log format compatible with Loki label extraction.
-- Include at minimum: `timestamp`, `level`, `service`, `message`, and context fields (`request_id`, `endpoint`).
+- Include at minimum: `timestamp`, `level`, `service`, `message`, and context fields
+  (`request_id`, `endpoint`).
 - Use `logging` module with a JSON formatter; avoid `print` in production.
 
 ```python
@@ -50,13 +55,17 @@ class JsonFormatter(logging.Formatter):
 ```
 
 ### Grafana
-- When generating dashboard JSON, include: title, time range, refresh interval, and at least one `rate()` panel.
+
+- When generating dashboard JSON, include: title, time range, refresh interval, and at
+  least one `rate()` panel.
 - Prefer `rate(counter[5m])` over raw counter values in panels.
 - Group panels by domain: latency / errors / throughput.
 
 ### Testing
+
 - Add a test that verifies metric registration does not raise on import.
-- Add a test that exercises the instrumented function and checks that the counter increments.
+- Add a test that exercises the instrumented function and checks that the counter
+  increments.
 
 ## Examples
 
