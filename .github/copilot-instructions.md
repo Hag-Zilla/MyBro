@@ -22,8 +22,10 @@ quality, and prompt governance.
 
 ## Repository Context
 
-- Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
-- Target Audience: data scientists, MLOps engineers, backend developers.
+- Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki,
+  pandas, NumPy, Jupyter, SQLAlchemy, Alembic, MLflow, DVC.
+- Target Audience: data scientists, ML engineers, MLOps engineers, data engineers,
+  backend developers.
 
 For agent-specific behaviour rules (permissions, governance, workflow constraints), see [AGENTS.md](../AGENTS.md).
 
@@ -74,11 +76,33 @@ For agent-specific behaviour rules (permissions, governance, workflow constraint
 - Add basic instrumentation (Prometheus client) and Grafana dashboard examples.
 - Suggest structured log format (JSON) compatible with Loki.
 
+## Data Science and Analysis
+
+- Structure EDA notebooks with sections: Imports, Configuration, Data Loading,
+  Analysis, Conclusions.
+- Set random seeds early; clear notebook outputs before committing.
+- Prefer `seaborn` or `plotly.express` for visualizations; always label axes.
+- Use SHAP for model-agnostic feature importance.
+
 ## MLOps Best Practices
 
 - Separate training code from service code (inference).
 - Provide CI examples for training and deployment (e.g., GitHub Actions).
 - Suggest model validation (unit tests + prediction integration tests).
+- Use MLflow or equivalent for experiment tracking; log params, metrics, artifacts.
+
+## Data Engineering
+
+- Design pipelines as idempotent, incremental operations.
+- Parameterize all SQL queries; never use string interpolation for values.
+- Use Alembic for all schema migrations; write reversible `upgrade`/`downgrade`.
+- Log row counts at each pipeline boundary; route failures to dead-letter tables.
+
+## Authentication and Security
+
+- Use `OAuth2PasswordBearer` + `Depends(get_current_user)` for protected routes.
+- Set JWT access token expiry <= 15 min; use refresh tokens for sessions.
+- Load all secrets via `pydantic-settings`; mark as `SecretStr`; never log them.
 
 ## Restrictions and Prohibitions
 

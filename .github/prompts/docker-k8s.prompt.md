@@ -71,4 +71,21 @@ Generate Docker and Kubernetes manifests following these practices:
          name: app-config
    ```
 
+5. **Secrets management**:
+   - Use Kubernetes `Secret` for sensitive values; never put secrets in `ConfigMap`.
+   - Reference secrets via `envFrom.secretRef` or mounted volumes, not inline `env`.
+   - Prefer `external-secrets` operator with a vault backend in production.
+
+   ```yaml
+   envFrom:
+     - secretRef:
+         name: app-secrets
+   ```
+
+6. **Multi-environment pattern**:
+   - Use Kustomize overlays (`base/`, `overlays/dev/`, `overlays/prod/`) or Helm
+     values files to separate environment-specific config.
+   - Never duplicate manifests across environments; patch only what differs.
+
 Reference standards: #file:../copilot-instructions.md
+Reference environment rules: #file:../instructions/environments.instructions.md

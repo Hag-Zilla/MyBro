@@ -18,6 +18,26 @@ Repository dedicated to GitHub Copilot customization and instruction governance.
 - Contribution rules for instruction changes: [CONTRIBUTING.md](CONTRIBUTING.md)
 - CI checks for instruction quality and consistency: [.github/workflows/docs-quality.yml](.github/workflows/docs-quality.yml)
 
+## Domain Coverage
+
+| Domain | Instruction file | Prompt file |
+|---|---|---|
+| ML training | [ml-training](.github/instructions/ml-training.instructions.md) | — |
+| ML inference / serving | [ml-inference](.github/instructions/ml-inference.instructions.md) | — |
+| Exploratory data analysis | [eda](.github/instructions/eda.instructions.md) | [eda-analysis](.github/prompts/eda-analysis.prompt.md) |
+| Jupyter notebooks | [notebooks](.github/instructions/notebooks.instructions.md) | — |
+| Experiment tracking | [experiment-tracking](.github/instructions/experiment-tracking.instructions.md) | — |
+| Data validation | [data-validation](.github/instructions/data-validation.instructions.md) | — |
+| Data engineering (ETL) | [data-engineering](.github/instructions/data-engineering.instructions.md) | [data-pipeline](.github/prompts/data-pipeline.prompt.md) |
+| MLOps pipelines | [mlops-pipelines](.github/instructions/mlops-pipelines.instructions.md) | [ml-pipeline-ci](.github/prompts/ml-pipeline-ci.prompt.md) |
+| FastAPI | [fastapi-api](.github/instructions/fastapi-api.instructions.md) | — |
+| Authentication / security | [auth-security](.github/instructions/auth-security.instructions.md) | [add-auth](.github/prompts/add-auth.prompt.md) |
+| Observability | [observability](.github/instructions/observability.instructions.md) | [add-prometheus-metrics](.github/prompts/add-prometheus-metrics.prompt.md) |
+| Docker / Kubernetes | — | [docker-k8s](.github/prompts/docker-k8s.prompt.md) |
+| Environment config | [environments](.github/instructions/environments.instructions.md) | — |
+| Code review | — | [code-review](.github/prompts/code-review.prompt.md) |
+| Write tests | — | [write-tests](.github/prompts/write-tests.prompt.md) |
+
 ## Governance Model
 
 Instruction priority is intentionally simple and explicit:
