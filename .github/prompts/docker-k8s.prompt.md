@@ -66,4 +66,3 @@ Generate Docker and Kubernetes manifests following these practices:
    ```
 
 Reference standards: #file:../copilot-instructions.md
-

@@ -57,3 +57,38 @@ class JsonFormatter(logging.Formatter):
 ### Testing
 - Add a test that verifies metric registration does not raise on import.
 - Add a test that exercises the instrumented function and checks that the counter increments.
+
+## Examples
+
+Prometheus metrics are defined at module level and exposed on `/metrics`:
+
+```python
+from prometheus_client import Counter, generate_latest
+from fastapi import FastAPI
+
+app = FastAPI()
+REQUEST_COUNT = Counter("app_requests_total", "Total requests", ["endpoint"])
+
+@app.get("/health")
+async def health():
+    REQUEST_COUNT.labels(endpoint="/health").inc()
+    return {"status": "ok"}
+
+@app.get("/metrics")
+async def metrics():
+    return generate_latest()
+```
+
+Structured logs in JSON format for Loki:
+
+```json
+{
+  "timestamp": "2026-03-30T10:00:00Z",
+  "level": "INFO",
+  "service": "api",
+  "message": "Request processed",
+  "request_id": "abc-123",
+  "endpoint": "/predict",
+  "latency_ms": 45
+}
+```

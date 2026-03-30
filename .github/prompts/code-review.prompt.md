@@ -34,4 +34,3 @@ Review this code for:
    - Logging at appropriate levels
 
 Reference standards: #file:../copilot-instructions.md
-

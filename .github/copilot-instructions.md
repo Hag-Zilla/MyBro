@@ -90,6 +90,3 @@ Operational Usage
 
 - Prefer small and targeted PRs with a clear title and description of changes.
 - Concise commit messages: `feat:`, `fix:`, `chore:` followed by a brief description.
-
-
-

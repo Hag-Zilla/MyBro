@@ -7,10 +7,10 @@ Generate unit tests for the following code using `pytest`:
    def test_<function>_<scenario>():
        # Arrange
        input_data = ...
-       
+
        # Act
        result = function(input_data)
-       
+
        # Assert
        assert result == expected
    ```
@@ -45,4 +45,3 @@ Generate unit tests for the following code using `pytest`:
 Ensure tests are concise and focused on one thing per test.
 
 Reference standards: #file:../copilot-instructions.md
-
