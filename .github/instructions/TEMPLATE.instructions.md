@@ -1,28 +1,19 @@
 ---
-applyTo: "path/to/module/**/*.py"
+applyTo: "src/YOUR_MODULE/**/*.py"
 ---
 
 ## Purpose
 
-Describe what this instruction file is designed to influence.
-
-## Scope
-
-Describe where and when these instructions apply.
+Describe in one sentence what Copilot should do differently for this module.
 
 ## Guidelines
 
-- Prefer should-oriented guidance in early repository stages
-- Keep requirements specific and actionable
-- Avoid conflicts with global repository instructions
+- Keep rules actionable and specific to this module.
+- Avoid repeating rules already in `.github/copilot-instructions.md`.
+- Prefer positive instructions ("prefer X") over negative ones ("never do Y") unless a hard constraint.
 
 ## Examples
 
-- Provide one or two realistic examples that show desired output quality
-
-## Validation Checklist
-
-- Frontmatter includes applyTo
-- Wording is clear and testable
-- Rules do not conflict with global instructions
-- Content is English-only
+```python
+# One realistic code example showing the desired output style.
+```

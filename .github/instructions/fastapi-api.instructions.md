@@ -1,5 +1,5 @@
 ---
-applyTo: "src/api/**/*.py,src/routes/**/*.py,app/**/*.py"
+applyTo: "src/api/**/*.py,src/routes/**/*.py,app/api/**/*.py"
 ---
 
 ## Purpose
@@ -54,9 +54,5 @@ async def health() -> dict[str, str]:
     return {"status": "ok"}
 ```
 
-## Validation Checklist
 
-- Frontmatter `applyTo` is present and valid.
-- Guidance is actionable and not contradictory with global instructions.
-- Content remains English-only.
 

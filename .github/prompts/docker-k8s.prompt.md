@@ -65,5 +65,5 @@ Generate Docker and Kubernetes manifests following these practices:
          name: app-config
    ```
 
-Reference standards: See .github/copilot-instructions.md
+Reference standards: #file:.github/copilot-instructions.md
 

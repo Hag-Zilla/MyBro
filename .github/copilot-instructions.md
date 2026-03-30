@@ -22,6 +22,12 @@ Repository Context
 - Technical Stack: Python, Docker, FastAPI, Kubernetes, Prometheus, Grafana, Loki.
 - Target Audience: data scientists, MLOps engineers, backend developers.
 
+Agent Behaviour
+- Never perform a `git commit`, `git push`, or any version control write operation on behalf of the user. Propose the command instead.
+- Be direct and honest. Do not flatter or soften incorrect assumptions — if the user is wrong, say so clearly and explain why.
+- Always ask clarifying questions before proceeding when a request is ambiguous, incomplete, or could be interpreted in multiple ways.
+- When any file in the repository is created, moved, renamed, or deleted, update `README.md` to reflect the change before considering the task complete.
+
 General Preferences
 - Code Style: Follow PEP 8, explicit names, short functions (<= 50 lines), type hints when possible. Use an automatic formatter to ensure compliance (prefer `black` + `isort`).
 - Docstrings: All functions and classes must include a docstring compliant with PEP 257; document parameters, return values, and exceptions. Prefer Google or NumPy style.
@@ -34,15 +40,6 @@ Recommended Tools
 - Import Sorting: `isort`.
 - Linting: `ruff` or `flake8` to detect PEP8 violations and common errors.
 - Git Hooks: use `pre-commit` to run `black`, `isort`, and `ruff/flake8` before each commit.
-
-Example Commands (Local)
-```bash
-python -m pip install --user black isort ruff pre-commit
-pre-commit install
-black .
-isort .
-ruff check .
-```
 
 Docker and Containerization
 - Provide lightweight and reproducible Dockerfiles (multi-stage builds if needed).
@@ -79,74 +76,6 @@ Operational Usage
 
 ---
 
-### Path-Specific Instructions
-
-Create `.github/instructions/NAME.instructions.md` files to add specific instructions for certain folders/modules.
-
-Recommended section structure for path-specific files:
-- Purpose
-- Scope
-- Guidelines
-- Examples
-- Validation Checklist
-
-Example **`.github/instructions/ml-training.instructions.md`**:
-```yaml
----
-applyTo: "src/ml/training/**/*.py"
----
-
-Training code: cross-validation mandatory, hyperparameters documented, drift tests.
-Minimal validation split: 70/15/15 (train/val/test).
-```
-
-Example **`.github/instructions/fastapi.instructions.md`**:
-```yaml
----
-applyTo: "src/api/**/*.py"
----
-
-FastAPI: Pydantic mandatory for input/output models.
-Document each endpoint (docstring + types).
-Add TestClient tests for response validation.
-```
-
-### Prompt Files (Reusable)
-
-Create reusable prompt templates in `.github/prompts/` and use them via the paperclip icon in chat.
-
-Prompt quality guidelines:
-- State the objective in one clear sentence.
-- Define constraints and exclusions explicitly.
-- Specify expected output format.
-- Keep examples realistic and concise.
-
-First, enable in VS Code workspace settings:
-```json
-"chat.promptFiles": true
-```
-
-Example **`.github/prompts/code-review.prompt.md`**:
-```markdown
-Review this code for:
-- PEP 8 compliance and style
-- Type hints completeness
-- Docstring coverage (all functions/classes)
-- Security issues (no hardcoded secrets)
-- Performance and test coverage
-
-See standards: #file:.github/copilot-instructions.md
-```
-
----
-
-**How to Ask Copilot**
-
-- Provide a clear objective: explain the goal and constraints (Python compatibility, dependencies, performance limits).
-- Provide input/output examples if possible (data format, expected types).
-- Indicate the desired level of detail: "code only", "code + brief explanation", or "code + tests".
-- Specify the relevant files or modules, and whether the modification must be backward compatible.
-
 **Expected Response Format**
 
 - Provide a concise and testable implementation, with PEP 257-compliant docstrings and type annotations.
@@ -154,14 +83,6 @@ See standards: #file:.github/copilot-instructions.md
 - For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart snippet) and a brief usage note.
 - For commands and instructions, use code blocks with the correct language (bash, Dockerfile, yaml).
 - Never include secrets or sensitive values in plain text.
-
-**Examples of Effective Prompts**
-
-- "Write a function `normalize_df(df: pd.DataFrame) -> pd.DataFrame` that normalizes numeric columns. Include NumPy-style docstring and a minimal pytest test."
-- "Generate a multistage `Dockerfile` for a FastAPI app (module `app:app`) with Uvicorn and expose port 8000."
-- "Propose a FastAPI integration test using `TestClient` for the `/predict` endpoint."
-- "Add Prometheus instrumentation to count HTTP requests and measure latency."
-- "Provide a simple Helm manifest to deploy a FastAPI service with requests/limits and probes."
 
 **Exclusions and Best Practices**
 
@@ -174,10 +95,5 @@ See standards: #file:.github/copilot-instructions.md
 - Prefer small and targeted PRs with a clear title and description of changes.
 - Concise commit messages: `feat:`, `fix:`, `chore:` followed by a brief description.
 
-### Verifying Applied Instructions
 
-To confirm that Copilot is using the instructions:
-1. Submit a request in Copilot Chat.
-2. At the bottom of the Chat, check the **"References"** list.
-3. If `.github/copilot-instructions.md` (or a path-specific instruction) is listed, it is active.
 
