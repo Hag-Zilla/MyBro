@@ -1,5 +1,11 @@
 # MyBro
 
+[![CI](https://github.com/Hag-Zilla/MyBro/actions/workflows/docs-quality.yml/badge.svg)](https://github.com/Hag-Zilla/MyBro/actions)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro)](https://github.com/Hag-Zilla/MyBro/releases)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](https://pre-commit.com)
+[![markdownlint](https://img.shields.io/badge/markdownlint-passing-brightgreen.svg)](https://github.com/DavidAnson/markdownlint)
+
 Repository dedicated to GitHub Copilot customization and instruction governance.
 
 ## What This Repository Contains
