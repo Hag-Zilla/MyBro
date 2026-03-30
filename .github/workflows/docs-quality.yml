@@ -16,13 +16,13 @@ jobs:
       - name: Markdown lint
         uses: DavidAnson/markdownlint-cli2-action@v18
         with:
-          config: .markdownlint.json
+          config: .github/.markdownlint.json
           globs: "**/*.md"
 
       - name: Spelling check
         uses: streetsidesoftware/cspell-action@v6
         with:
-          config: .cspell.json
+          config: .github/.cspell.json
           files: "**/*.md"
 
       - name: Link check
