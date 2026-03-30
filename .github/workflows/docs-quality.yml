@@ -36,4 +36,4 @@ jobs:
           python-version: "3.11"
 
       - name: Validate instruction files
-        run: python scripts/validate_instructions.py
+        run: python .github/scripts/validate_instructions.py

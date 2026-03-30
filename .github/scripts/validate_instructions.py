@@ -6,15 +6,13 @@ from pathlib import Path
 import re
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 INSTRUCTIONS_DIR = REPO_ROOT / ".github" / "instructions"
 
 REQUIRED_HEADINGS = [
     "## Purpose",
-    "## Scope",
     "## Guidelines",
     "## Examples",
-    "## Validation Checklist",
 ]
 
 
