@@ -33,5 +33,5 @@ Review this code for:
    - Meaningful error messages
    - Logging at appropriate levels
 
-Reference standards: #file:.github/copilot-instructions.md
+Reference standards: #file:../copilot-instructions.md
 

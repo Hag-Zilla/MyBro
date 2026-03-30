@@ -19,5 +19,5 @@ Add Prometheus metrics to the selected code following these requirements:
 
 6. **Tests**: add a pytest test that imports the module and verifies the metric is registered without error.
 
-Reference standards: #file:.github/copilot-instructions.md
-Reference observability rules: #file:.github/instructions/observability.instructions.md
+Reference standards: #file:../copilot-instructions.md
+Reference observability rules: #file:../instructions/observability.instructions.md
