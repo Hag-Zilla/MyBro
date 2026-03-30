@@ -1,0 +1,42 @@
+repos:
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        args: [--config, .github/.markdownlint.json]
+
+  # Spell checking
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: v8.3.2
+    hooks:
+      - id: cspell
+        args: [--config, .github/.cspell.json, --files, "**/*.md"]
+
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+
+  # Python syntax validation
+  - repo: https://github.com/pre-commit/mirrors-pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+        args: [--py311-plus]
+        files: "\.py$"
+
+  # Custom validation script
+  - repo: local
+    hooks:
+      - id: validate-instructions
+        name: Validate instruction files
+        entry: python .github/scripts/validate_instructions.py
+        language: python
+        pass_filenames: false
+        stages: [commit]

@@ -27,6 +27,21 @@ Before merge, ensure:
 3. Link checks pass
 4. Instruction frontmatter and section checks pass
 
+### Running checks locally
+
+Install pre-commit hooks to validate files **before commit**:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+Then, hooks will automatically run on `git commit`. To run manually:
+
+```bash
+pre-commit run --all-files
+```
+
 ## Authoring Rules
 
 For files under [.github/instructions/](.github/instructions):

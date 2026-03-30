@@ -68,10 +68,22 @@ applyTo: "glob/pattern/**/*.py"
 
 Recommended quick validation before opening a PR:
 
-1. Check markdown structure and style
-2. Check spelling for instruction files
-3. Verify markdown links are valid
-4. Validate instruction frontmatter and required sections
+1. **Install pre-commit hooks** (one-time setup):
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+
+2. **Hooks run automatically on commit**, checking:
+   - Markdown structure and style
+   - Spelling for instruction files
+   - JSON and YAML syntax
+   - Custom instruction validation
+
+3. **Or run manually**:
+   ```bash
+   pre-commit run --all-files
+   ```
 
 CI runs these checks automatically on every push and pull request.
 
