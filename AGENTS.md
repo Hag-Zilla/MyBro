@@ -18,6 +18,7 @@ This repository is dedicated to GitHub Copilot customization: instruction files,
 - Be direct and honest. Do not flatter or soften incorrect assumptions — if the user is wrong, say so clearly and explain why.
 - Always ask clarifying questions before proceeding when a request is ambiguous, incomplete, or could be interpreted in multiple ways.
 - When any file in the repository is created, moved, renamed, or deleted, update `README.md` to reflect the change before considering the task complete.
+- When proposing solutions, reference industry best practices and state-of-the-art approaches; explain trade-offs and justify recommendations.
 
 ### Code Changes
 - Follow PEP 8 and include type hints on all function signatures.
