@@ -9,6 +9,14 @@
 
 Repository dedicated to GitHub Copilot customization and instruction governance.
 
+## Table of Contents
+
+- [What This Repository Contains](#what-this-repository-contains)
+- [Domain Coverage](#domain-coverage)
+- [Governance Model](#governance-model)
+- [Repository Goals](#repository-goals)
+- [File Conventions](#file-conventions)
+
 ## What This Repository Contains
 
 - Global Copilot instructions: [.github/copilot-instructions.md](.github/copilot-instructions.md)
