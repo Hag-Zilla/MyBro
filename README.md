@@ -210,6 +210,8 @@ MyBro/
 │   │
 │   ├── instructions/                     # Domain-specific instruction files
 │   │   ├── TEMPLATE.instructions.md      # Template for new domain instructions
+│   │   ├── project-structure.instructions.md  # Expected project layout (all repos)
+│   │   ├── readme-structure.instructions.md   # Required README sections and format
 │   │   ├── ml-training.instructions.md   # ML model training best practices
 │   │   ├── ml-inference.instructions.md  # ML model serving & inference
 │   │   ├── eda.instructions.md           # Exploratory data analysis (EDA)
