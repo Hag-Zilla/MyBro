@@ -2,13 +2,14 @@
 
 <div align="center">
   <img src="assets/logo.png" alt="MyBro Logo" width="200">
-  
+
   **Professional-grade GitHub Copilot customization framework with domain-specific instructions, reusable prompts, and automated quality governance.**
-  
+
   **Built with:** Markdown · Python · GitHub Actions · pre-commit
 </div>
 
 ![CI](https://github.com/Hag-Zilla/MyBro/actions/workflows/docs-quality.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro) ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg) ![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg) ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg) ![markdownlint](https://img.shields.io/badge/markdownlint-passing-brightgreen.svg)
+
 ---
 
 ## 📋 Table of Contents
@@ -51,28 +52,28 @@ MyBro is ideal for **Python teams working on data, ML, and API projects** who us
 
 ## Key Features
 
-✨ **Global Custom Instructions**  
+✨ **Global Custom Instructions**
 Centralized guidance file (`copilot-instructions.md`) applied across all Copilot interactions, covering code style, security, testing, and design patterns.
 
-🎯 **Domain-Specific Instructions**  
+🎯 **Domain-Specific Instructions**
 Specialized `.instructions.md` files for 13+ domains (ML training, data engineering, FastAPI, authentication, observability, and more) that activate automatically based on file path patterns.
 
-🔄 **Reusable Prompt Templates**  
+🔄 **Reusable Prompt Templates**
 Pre-crafted `.prompt.md` files for common workflows (data pipelines, Prometheus metrics, authentication flows)—copy, customize, and submit to Copilot.
 
-✅ **Golden Prompt Scenarios**  
+✅ **Golden Prompt Scenarios**
 High-quality example prompts and expected outputs for reference and learning.
 
-🛡️ **Automated Quality Governance**  
+🛡️ **Automated Quality Governance**
 GitHub Actions CI workflows validate instruction syntax, check for conflicts, ensure proper formatting, and detect broken links—catch issues before merge.
 
-📊 **Inverse Priority Resolution**  
+📊 **Inverse Priority Resolution**
 Clear conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence.
 
-🔧 **Pre-commit Integration**  
+🔧 **Pre-commit Integration**
 Local hooks run markdown linting, spellcheck, and instruction validation before each commit—fail fast, fix locally.
 
-📖 **Agent Behavior Rules** (AGENTS.md)  
+📖 **Agent Behavior Rules** (AGENTS.md)
 Explicit guidelines for AI agents (Copilot, code review bots) covering permissions, PR scope, security, and workflows.
 
 ---
@@ -127,11 +128,12 @@ Expected output: ✓ All checks pass (markdownlint, spellcheck, link validation,
 
 Test that the setup works by opening Copilot Chat and running a simple prompt:
 
-```
+```text
 Create a simple Python function with PEP 8 style, type hints, and a docstring.
 ```
 
 **Expected behavior**: Copilot should generate code with:
+
 - Explicit variable names
 - Type annotations
 - Google-style docstring
@@ -165,7 +167,7 @@ Then, customize paths in `.github/instructions/*.instructions.md` to match your 
 
 MyBro operates on a **layered instruction model**:
 
-```
+```text
 ┌─────────────────────────────────────────────┐
 │  User Request in Copilot Chat               │
 └────────────────┬────────────────────────────┘
@@ -192,7 +194,7 @@ MyBro operates on a **layered instruction model**:
 
 ### Complete Project Structure
 
-```
+```text
 MyBro/
 │
 ├── README.md                              # This file
@@ -289,6 +291,7 @@ curl -sSL https://raw.githubusercontent.com/Hag-Zilla/MyBro/main/scripts/bootstr
 ```
 
 This downloads:
+
 - `.github/copilot-instructions.md` (global rules)
 - `AGENTS.md` (agent behavior rules)
 - All `.github/instructions/*.instructions.md` files
@@ -301,7 +304,7 @@ Two language settings are declared at the top of `copilot-instructions.md`:
 
 | Setting | Key | Default |
 |---|---|---|
-| Interaction language | `Interaction language` | French |
+| Interaction language | `Interaction language` | English |
 | Development language | `Development language` | Python |
 
 - **Interaction language** controls the language Copilot uses in responses to the user.
@@ -387,6 +390,7 @@ Failures block merges. Fixes are required before PR acceptance.
 **Location:** `.github/instructions/`
 
 **Required Frontmatter:**
+
 ```yaml
 ---
 applyTo: "glob/pattern/**/*.py"
@@ -395,6 +399,7 @@ description: "Brief description of scope"
 ```
 
 **Recommended Sections:**
+
 - **Purpose** — Why this domain/pattern matters
 - **Guidelines** — Do's and don'ts (practical advice)
 - **Examples** — Code snippets showing correct behavior
@@ -406,6 +411,7 @@ description: "Brief description of scope"
 **Location:** `.github/prompts/`
 
 **Structure:**
+
 ```markdown
 # Prompt Title
 
@@ -435,6 +441,7 @@ Links to related docs or templates.
 **Purpose:** High-quality scenario examples and expected outputs—used for regression testing and instruction validation.
 
 **Format:**
+
 - Prompt scenario (what you submit to Copilot)
 - Ideal/expected output
 - Quality rubric (what makes it good)
@@ -549,6 +556,7 @@ We welcome contributions! MyBro is designed to grow and improve with community i
 **MyBro** is maintained by [Hag-Zilla](https://github.com/Hag-Zilla).
 
 For inquiries or contributions, please:
+
 - Open an issue with detailed context
 - Submit a PR with your improvements
 - Start a discussion for feature ideas
@@ -588,8 +596,8 @@ For commercial use or alternative licensing, contact the maintainers.
     ⭐ If MyBro helped you, consider starring the repo!
   </p>
   <p>
-    <a href="https://github.com/Hag-Zilla/MyBro">View on GitHub</a> · 
-    <a href="https://github.com/Hag-Zilla/MyBro/issues">Report Issue</a> · 
+    <a href="https://github.com/Hag-Zilla/MyBro">View on GitHub</a> ·
+    <a href="https://github.com/Hag-Zilla/MyBro/issues">Report Issue</a> ·
     <a href="https://github.com/Hag-Zilla/MyBro/discussions">Start Discussion</a>
   </p>
 </div>

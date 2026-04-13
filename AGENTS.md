@@ -26,6 +26,7 @@ This repository is dedicated to GitHub Copilot customization: instruction files,
   `README.md` to reflect the change before considering the task complete.
 - When proposing solutions, reference industry best practices and state-of-the-art
   approaches; explain trade-offs and justify recommendations.
+
 ### Security
 
 - Do not add `print` statements to production code paths.
