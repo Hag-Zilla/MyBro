@@ -13,7 +13,12 @@
     "Uvicorn",
     "applyTo",
     "frontmatter",
-    "healthcheck"
+    "healthcheck",
+    "behaviour",
+    "Behaviour",
+    "isort",
+    "docstrings",
+    "Zilla"
   ],
   "ignorePaths": [
     "LICENSE"
