@@ -239,7 +239,8 @@ MyBro/
 │   │   └── bootstrap-copilot.sh          # Setup script for new projects
 │   │
 │   └── workflows/                        # GitHub Actions CI
-│       └── docs-quality.yml              # Lint, validate, check links
+│       ├── docs-quality.yml              # Full pipeline (main): lint, spell, links, validate
+│       └── dev-quality.yml               # Lightweight pipeline (dev): lint + spell only
 │
 ├── .pre-commit-config.yaml                # Pre-commit hook definitions
 ├── .markdownlint.json                     # Markdown linting rules
@@ -458,7 +459,7 @@ Links to related docs or templates.
 | **markdownlint** | Markdown style validation | `.markdownlint.json` | `pre-commit install` |
 | **cspell** | Spell-checking for instructions | `.cspell.json` | `pre-commit install` |
 | **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
-| **GitHub Actions** | CI/CD validation on every push | `.github/workflows/docs-quality.yml` | Auto-runs on PR |
+| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/docs-quality.yml` (main), `.github/workflows/dev-quality.yml` (dev) | Auto-runs on push/PR |
 
 ### Local Setup for Contributors
 
