@@ -1,10 +1,17 @@
-## GitHub Copilot Custom Instructions — English
+## GitHub Copilot Custom Instructions — Français / English
 
 **Purpose**: Provide suggestions consistent with repository conventions, accelerate code
 writing, and assist contributors on Python, MLOps, deployment, and observability.
 
 **Repository Type**: This repository is dedicated to Copilot customization, instruction
 quality, and prompt governance.
+
+## Language Configuration
+
+- **Interaction language**: English — all Copilot responses and comments directed at the
+  user must be in English, unless the user explicitly switches to another language.
+- **Development language**: Python — all source code, docstrings, and inline comments
+  must be written in English (standard convention for code).
 
 ## Instruction Priority
 
@@ -117,6 +124,9 @@ For agent-specific behaviour rules (permissions, governance, workflow constraint
 
 ## Expected Response Format
 
+- **Be minimal**: default to the shortest correct answer; expand only when explicitly
+  asked. Avoid restating the question, filler sentences, or summaries of what was done.
+  This saves tokens and keeps interactions efficient.
 - Provide a concise and testable implementation, with PEP 257-compliant docstrings and
   type annotations.
 - Add a small `pytest` test when the feature is non-trivial.
@@ -137,3 +147,10 @@ For agent-specific behaviour rules (permissions, governance, workflow constraint
 
 - Prefer small and targeted PRs with a clear title and description of changes.
 - Concise commit messages: `feat:`, `fix:`, `chore:` followed by a brief description.
+
+## Branch Strategy
+
+- **`main`**: production branch — full CI/CD pipelines (lint, test, security scan, build,
+  deploy). Merges require passing all checks and at least one review.
+- **`dev`**: development/integration branch — lighter pipelines (lint + fast tests only).
+  Used for iterative work and validation before promoting to `main`.

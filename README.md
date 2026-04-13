@@ -19,6 +19,8 @@
 4. [Architecture & File Structure](#architecture--file-structure)
 5. [Domain Coverage](#domain-coverage)
 6. [Configuration & Customization](#configuration--customization)
+   - [Language Configuration](#language-configuration)
+   - [Branch Strategy](#branch-strategy)
 7. [Governance Model](#governance-model)
 8. [File Conventions & Standards](#file-conventions--standards)
 9. [Code Quality & Development Standards](#code-quality--development-standards)
@@ -293,6 +295,28 @@ This downloads:
 - All `.github/prompts/*.prompt.md` templates
 - `CONTRIBUTING.md`
 
+### Language Configuration
+
+Two language settings are declared at the top of `copilot-instructions.md`:
+
+| Setting | Key | Default |
+|---|---|---|
+| Interaction language | `Interaction language` | French |
+| Development language | `Development language` | Python |
+
+- **Interaction language** controls the language Copilot uses in responses to the user.
+- **Development language** sets the expected programming language for source code, docstrings, and inline comments.
+
+To change either, edit the `## Language Configuration` section in
+`.github/copilot-instructions.md`.
+
+### Branch Strategy
+
+| Branch | CI/CD scope |
+|---|---|
+| `main` | Full pipeline: lint, test, security scan, build, deploy — requires review |
+| `dev` | Lightweight: lint + fast tests only — for iterative work |
+
 ### Customize Instructions for Your Team
 
 Each `.instructions.md` file has YAML frontmatter defining `applyTo` patterns:
@@ -558,7 +582,7 @@ For commercial use or alternative licensing, contact the maintainers.
 
 <div align="center">
   <p>
-    <strong>Made with ❤️ for teams that love clean code and smart automation.</strong>
+    <strong>Made with 💪 for teams that love clean code and smart automation.</strong>
   </p>
   <p>
     ⭐ If MyBro helped you, consider starring the repo!
