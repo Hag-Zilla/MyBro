@@ -52,42 +52,42 @@ MyBro is ideal for **Python teams working on data, ML, and API projects** who us
 
 ## Key Features
 
-✨ **Global Custom Instructions**
+**Global Custom Instructions**
 Centralized guidance file (`copilot-instructions.md`) applied across all Copilot interactions, covering code style, security, testing, and design patterns.
 
-🎯 **Domain-Specific Instructions**
+**Domain-Specific Instructions**
 Specialized `*.instructions.md` files covering 12 domain areas (ML training, data engineering, FastAPI, authentication, observability, and more), plus repository-wide structure rules, that activate automatically based on file path patterns.
 
-🔄 **Reusable Prompt Templates**
+**Reusable Prompt Templates**
 Pre-crafted `*.prompt.md` files for common workflows (data pipelines, Prometheus metrics, authentication flows)—copy, customize, and submit to Copilot.
 
-✅ **Golden Prompt Scenarios**
+**Golden Prompt Scenarios**
 High-quality example prompts and expected outputs for reference and learning.
 
-🛡️ **Automated Quality Governance**
-GitHub Actions CI workflows validate instruction syntax, check for conflicts, ensure proper formatting, and detect broken links—catch issues before merge.
+**Automated Quality Checks**
+GitHub Actions CI workflows validate instruction structure, formatting, spelling, and broken links—catch documentation and instruction issues before merge.
 
-📊 **Inverse Priority Resolution**
-Clear conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence.
+**Clear Instruction Priority**
+Documented priority and conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence when specificity is equal.
 
-🔧 **Pre-commit Integration**
+**Pre-commit Integration**
 Local hooks run markdown linting, spellcheck, and instruction validation before each commit—fail fast, fix locally.
 
-📖 **Agent Behavior Rules** (AGENTS.md)
+**Agent Behavior Rules** (AGENTS.md)
 Explicit guidelines for AI agents (Copilot, code review bots) covering permissions, PR scope, security, and workflows.
 
 ---
 
 ## Quick Start
 
-### 1️⃣ Clone and Explore the Repository
+### 1) Clone and Explore the Repository
 
 ```bash
 git clone https://github.com/Hag-Zilla/MyBro.git
 cd MyBro
 ```
 
-### 2️⃣ Activate the Custom Instructions in Your VS Code Workspace
+### 2) Activate the Custom Instructions in Your VS Code Workspace
 
 Once cloned, the `.github/copilot-instructions.md` file is automatically recognized by VS Code (if you have the Copilot Chat extension installed). To verify activation:
 
@@ -96,7 +96,7 @@ Once cloned, the `.github/copilot-instructions.md` file is automatically recogni
 3. Search for **"Copilot"** and verify that custom instructions are enabled
 4. Check the Copilot Chat panel—it should reference instructions from this repo
 
-### 3️⃣ Install Pre-commit Hooks (Recommended)
+### 3) Install Pre-commit Hooks (Recommended)
 
 Set up automated quality checks to run before each commit:
 
@@ -113,7 +113,7 @@ pre-commit run --all-files
 
 Expected output: ✓ All checks pass (markdownlint, spellcheck, link validation, instruction frontmatter validation).
 
-### 4️⃣ Essential Configuration Files
+### 4) Essential Configuration Files
 
 | File/Directory | Purpose | Example |
 |---|---|---|
@@ -124,7 +124,7 @@ Expected output: ✓ All checks pass (markdownlint, spellcheck, link validation,
 | `AGENTS.md` | Behavior rules for AI agents | [Read it](./AGENTS.md) |
 | `CONTRIBUTING.md` | Contribution workflow and PR requirements | [Read it](./CONTRIBUTING.md) |
 
-### 5️⃣ Verify Installation
+### 5) Verify Installation
 
 Test that the setup works by opening Copilot Chat and running a simple prompt:
 
@@ -145,7 +145,7 @@ If output doesn't follow these conventions, instructions may not be loaded. Chec
 pre-commit run --all-files
 ```
 
-### 6️⃣ Advanced: Clone into Other Projects
+### 6) Advanced: Clone into Other Projects
 
 To use MyBro's instructions in another project:
 
