@@ -16,6 +16,14 @@ repos:
       - id: markdownlint-cli2
         args: [--config, .github/.markdownlint.json]
 
+  # Spelling checks (aligned with CI)
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: v9.8.0
+    hooks:
+      - id: cspell
+        files: \.md$
+        args: [--config, .github/.cspell.json]
+
   # Custom validation script
   - repo: local
     hooks:

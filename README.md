@@ -111,7 +111,7 @@ Verify the installation:
 pre-commit run --all-files
 ```
 
-Expected output: ✓ All checks pass (markdownlint, spellcheck, link validation, instruction frontmatter validation).
+Expected output: ✓ All checks pass (markdownlint, cspell, instruction frontmatter validation).
 
 ### 4) Essential Configuration Files
 
@@ -245,8 +245,8 @@ MyBro/
 │       └── dev-quality.yml               # Lightweight pipeline (dev): lint + spell only
 │
 ├── .pre-commit-config.yaml                # Pre-commit hook definitions
-├── .markdownlint.json                     # Markdown linting rules
-├── .cspell.json                           # Spell-check dictionary
+├── .github/.markdownlint.json             # Markdown linting rules
+├── .github/.cspell.json                   # Spell-check dictionary
 │
 ├── scripts/                               # Repository-level utilities
 │   └── bootstrap-copilot.sh               # Initialize MyBro in new projects
@@ -458,8 +458,8 @@ Links to related docs or templates.
 
 | Tool | Purpose | Config File | Setup |
 |---|---|---|---|
-| **markdownlint** | Markdown style validation | `.markdownlint.json` | `pre-commit install` |
-| **cspell** | Spell-checking for instructions | `.cspell.json` | `pre-commit install` |
+| **markdownlint** | Markdown style validation | `.github/.markdownlint.json` | `pre-commit install` |
+| **cspell** | Spell-checking for instructions | `.github/.cspell.json` | `pre-commit install` |
 | **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
 | **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/docs-quality.yml` (main), `.github/workflows/dev-quality.yml` (dev) | Auto-runs on push/PR |
 
@@ -520,8 +520,8 @@ Detailed documentation for specialized topics:
 ### Related Projects
 
 - **MyBro on GitHub**: [Hag-Zilla/MyBro](https://github.com/Hag-Zilla/MyBro)
-- **cspell Dictionary**: [MyBro .cspell.json](.cspell.json)
-- **markdownlint Config**: [MyBro .markdownlint.json](.markdownlint.json)
+- **cspell Dictionary**: [MyBro .github/.cspell.json](.github/.cspell.json)
+- **markdownlint Config**: [MyBro .github/.markdownlint.json](.github/.markdownlint.json)
 
 ---
 
@@ -538,8 +538,8 @@ We welcome contributions! MyBro is designed to grow and improve with community i
 | Symptom | Likely Cause | Fix |
 |---|---|---|
 | Instructions seem inactive in Copilot Chat | File not found or workspace not opened from root | Ensure `.github/copilot-instructions.md` exists and open VS Code from the repo root |
-| `pre-commit run` fails on markdownlint | Formatting or structure violation | Check the rule in `.markdownlint.json`; fix indentation, blank lines, or heading levels |
-| `pre-commit run` fails on cspell | Unknown word in an instruction file | Add the word to the `words` array in `.cspell.json` |
+| `pre-commit run` fails on markdownlint | Formatting or structure violation | Check the rule in `.github/.markdownlint.json`; fix indentation, blank lines, or heading levels |
+| `pre-commit run` fails on cspell | Unknown word in an instruction file | Add the word to the `words` array in `.github/.cspell.json` |
 | Not sure which instruction applies to a file | Glob pattern mismatch | Check the `applyTo` frontmatter in each `.instructions.md` against your file path |
 | Two instructions seem contradictory | Overlapping glob patterns | The more specific glob wins — see [Governance Model](#governance-model) |
 | CI passes locally but fails on GitHub | Environment or hook version mismatch | Pin hook versions in `.pre-commit-config.yaml` and ensure they match CI config |
