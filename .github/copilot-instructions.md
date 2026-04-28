@@ -124,9 +124,10 @@ For agent-specific behaviour rules (permissions, governance, workflow constraint
 
 ## Expected Response Format
 
-- **Be minimal**: default to the shortest correct answer; expand only when explicitly
-  asked. Avoid restating the question, filler sentences, or summaries of what was done.
-  This saves tokens and keeps interactions efficient.
+- **Be minimal**: default to 1-3 sentences. Expand only when the user explicitly asks
+  (e.g., "explain", "elaborate", "detail", "give an example"). Avoid restating the
+  question, filler sentences, or summaries of what was done. This saves tokens and
+  keeps interactions efficient.
 - Provide a concise and testable implementation, with PEP 257-compliant docstrings and
   type annotations.
 - Add a small `pytest` test when the feature is non-trivial.
