@@ -6,13 +6,6 @@ writing, and assist contributors on Python, MLOps, deployment, and observability
 **Repository Type**: This repository is dedicated to Copilot customization, instruction
 quality, and prompt governance.
 
-## Language Configuration
-
-- **Interaction language**: English — all Copilot responses and comments directed at the
-  user must be in English, unless the user explicitly switches to another language.
-- **Development language**: Python — all source code, docstrings, and inline comments
-  must be written in English (standard convention for code).
-
 ## Instruction Priority
 
 1. System and platform policies
@@ -121,21 +114,6 @@ For agent-specific behaviour rules (permissions, governance, workflow constraint
 - This file must remain at the root `.github/copilot-instructions.md` to be recognized.
 - To propose a modification: open a small and explicit PR, include tests and validation
   instructions.
-
-## Expected Response Format
-
-- **Be minimal**: default to 1-3 sentences. Expand only when the user explicitly asks
-  (e.g., "explain", "elaborate", "detail", "give an example"). Avoid restating the
-  question, filler sentences, or summaries of what was done. This saves tokens and
-  keeps interactions efficient.
-- Provide a concise and testable implementation, with PEP 257-compliant docstrings and
-  type annotations.
-- Add a small `pytest` test when the feature is non-trivial.
-- For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart
-  snippet) and a brief usage note.
-- For commands and instructions, use code blocks with the correct language (bash,
-  Dockerfile, yaml).
-- Never include secrets or sensitive values in plain text.
 
 ## Exclusions and Best Practices
 
