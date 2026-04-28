@@ -50,7 +50,7 @@ Replace `<org>`, `<repo>`, and `<SPDX>` with actual values.
 
 ## Examples
 
-```markdown
+````markdown
 # MyProject — Short tagline
 
 ![CI](https://github.com/org/myproject/actions/workflows/docs-quality.yml/badge.svg)
@@ -68,4 +68,4 @@ cd myproject
 pip install -e ".[dev]"
 pre-commit install
 ```
-```
+````
