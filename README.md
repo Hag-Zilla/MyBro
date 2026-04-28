@@ -56,10 +56,10 @@ MyBro is ideal for **Python teams working on data, ML, and API projects** who us
 Centralized guidance file (`copilot-instructions.md`) applied across all Copilot interactions, covering code style, security, testing, and design patterns.
 
 🎯 **Domain-Specific Instructions**
-Specialized `.instructions.md` files covering 12 domain areas (ML training, data engineering, FastAPI, authentication, observability, and more), plus repository-wide structure rules, that activate automatically based on file path patterns.
+Specialized `*.instructions.md` files covering 12 domain areas (ML training, data engineering, FastAPI, authentication, observability, and more), plus repository-wide structure rules, that activate automatically based on file path patterns.
 
 🔄 **Reusable Prompt Templates**
-Pre-crafted `.prompt.md` files for common workflows (data pipelines, Prometheus metrics, authentication flows)—copy, customize, and submit to Copilot.
+Pre-crafted `*.prompt.md` files for common workflows (data pipelines, Prometheus metrics, authentication flows)—copy, customize, and submit to Copilot.
 
 ✅ **Golden Prompt Scenarios**
 High-quality example prompts and expected outputs for reference and learning.
