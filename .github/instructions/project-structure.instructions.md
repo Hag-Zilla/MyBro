@@ -32,7 +32,7 @@ project-root/
 │   ├── instructions/           # Domain-specific instruction files
 │   ├── prompts/                # Reusable prompt templates
 │   └── workflows/              # GitHub Actions CI/CD
-│       ├── docs-quality.yml    # Full pipeline (main branch)
+│       ├── main-quality.yml    # Full pipeline (main branch)
 │       └── develop-quality.yml # Lightweight pipeline (develop branch)
 ├── README.md
 ├── CONTRIBUTING.md

@@ -8,7 +8,7 @@
   **Built with:** Markdown · Python · GitHub Actions · pre-commit
 </div>
 
-![CI](https://github.com/Hag-Zilla/MyBro/actions/workflows/docs-quality.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro) ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg) ![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg) ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg) ![markdownlint](https://img.shields.io/badge/markdownlint-passing-brightgreen.svg)
+![CI](https://img.shields.io/badge/CI-main--quality-blue.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro) ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg) ![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg) ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg) ![markdownlint](https://img.shields.io/badge/markdownlint-passing-brightgreen.svg)
 
 ---
 
@@ -246,7 +246,7 @@ MyBro/
 │   │   └── bootstrap-copilot.sh          # Setup script for new projects
 │   │
 │   └── workflows/                        # GitHub Actions CI
-│       ├── docs-quality.yml              # Full pipeline (main): lint, spell, links, validate
+│       ├── main-quality.yml              # Full pipeline (main): lint, spell, links, validate
 │       └── develop-quality.yml           # Lightweight pipeline (develop): lint + spell only
 │
 ├── .pre-commit-config.yaml                # Pre-commit hook definitions
@@ -463,7 +463,7 @@ Links to related docs or templates.
 | **markdownlint** | Markdown style validation | `.github/.markdownlint.json` | `pre-commit install` |
 | **cspell** | Spell-checking for instructions | `.github/.cspell.json` | `pre-commit install` |
 | **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
-| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/docs-quality.yml` (main), `.github/workflows/develop-quality.yml` (develop) | Auto-runs on push/PR |
+| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/main-quality.yml` (main), `.github/workflows/develop-quality.yml` (develop) | Auto-runs on push/PR |
 
 ### Local Setup for Contributors
 

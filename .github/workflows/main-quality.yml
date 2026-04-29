@@ -1,4 +1,4 @@
-name: docs-quality
+name: main-quality
 on:
   push:
     branches:
