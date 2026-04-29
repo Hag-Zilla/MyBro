@@ -71,7 +71,7 @@ GitHub Actions CI workflows validate instruction structure, formatting, spelling
 Documented priority and conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence when specificity is equal.
 
 **Pre-commit Integration**
-Local hooks run markdown linting and spellcheck before each commit—fail fast, fix locally.
+Local hooks run markdown linting, spellcheck, and link checks before each commit—fail fast, fix locally.
 
 **Consolidated Agent Rules**
 Agent behavior guidance (Copilot, code review bots) is consolidated in `.github/copilot-instructions.md` to keep a single source of truth.
@@ -111,13 +111,13 @@ Verify the installation:
 pre-commit run --all-files
 ```
 
-Expected output: ✓ All checks pass (markdownlint, cspell, instruction frontmatter validation).
+Expected output: ✓ All checks pass (markdownlint, cspell, link check).
 
 ### 4) Essential Configuration Files
 
 | File/Directory | Purpose | Example |
 |---|---|---|
-| `.github/copilot-instructions.md` | Global Copilot behavior (code style, security, logging) | [Read it](./github/copilot-instructions.md) |
+| `.github/copilot-instructions.md` | Global Copilot behavior (code style, security, logging) | [Read it](./.github/copilot-instructions.md) |
 | `.github/instructions/` | Domain-specific rules (path-based activation) | [Browse domains](#domain-coverage) |
 | `.github/prompts/` | Ready-to-use prompt templates | [EDA template](.github/prompts/eda-analysis.prompt.md) |
 | `.github/golden-prompts/` | Reference examples and expected outputs | [View examples](.github/golden-prompts/) |
@@ -486,9 +486,9 @@ Detailed documentation for specialized topics:
 |---|---|---|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution workflow, PR checklist, commit conventions | Contributors, maintainers |
 | [.github/copilot-instructions.md](.github/copilot-instructions.md) | Global coding standards (PEP 8, security, testing) | All developers |
-| [.github/instructions/](instructions/) | Domain-specific guidance (MLOps, FastAPI, auth, etc.) | Domain specialists |
-| [.github/prompts/](prompts/) | Ready-to-use prompt templates | Copilot Chat users |
-| [.github/golden-prompts/](golden-prompts/) | High-quality scenario examples | Instruction authors |
+| [.github/instructions/](.github/instructions/) | Domain-specific guidance (MLOps, FastAPI, auth, etc.) | Domain specialists |
+| [.github/prompts/](.github/prompts/) | Ready-to-use prompt templates | Copilot Chat users |
+| [.github/golden-prompts/](.github/golden-prompts/) | High-quality scenario examples | Instruction authors |
 
 ---
 
