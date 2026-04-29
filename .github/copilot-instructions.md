@@ -177,5 +177,5 @@ quality, and prompt governance.
 
 - **`main`**: production branch — full CI/CD pipelines (lint, test, security scan, build,
   deploy). Merges require passing all checks and at least one review.
-- **`dev`**: development/integration branch — lighter pipelines (lint + fast tests only).
+- **`develop`**: development/integration branch — lighter pipelines (lint + fast tests only).
   Used for iterative work and validation before promoting to `main`.

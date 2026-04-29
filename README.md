@@ -247,7 +247,7 @@ MyBro/
 │   │
 │   └── workflows/                        # GitHub Actions CI
 │       ├── docs-quality.yml              # Full pipeline (main): lint, spell, links, validate
-│       └── dev-quality.yml               # Lightweight pipeline (dev): lint + spell only
+│       └── develop-quality.yml           # Lightweight pipeline (develop): lint + spell only
 │
 ├── .pre-commit-config.yaml                # Pre-commit hook definitions
 ├── .github/.markdownlint.json             # Markdown linting rules
@@ -325,7 +325,7 @@ To change either, edit the `## Language Configuration` section in
 | Branch | CI/CD scope |
 |---|---|
 | `main` | Full pipeline: lint, test, security scan, build, deploy — requires review |
-| `dev` | Lightweight: lint + fast tests only — for iterative work |
+| `develop` | Lightweight: lint + fast tests only — for iterative work |
 
 ### Customize Instructions for Your Team
 
@@ -463,7 +463,7 @@ Links to related docs or templates.
 | **markdownlint** | Markdown style validation | `.github/.markdownlint.json` | `pre-commit install` |
 | **cspell** | Spell-checking for instructions | `.github/.cspell.json` | `pre-commit install` |
 | **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
-| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/docs-quality.yml` (main), `.github/workflows/dev-quality.yml` (dev) | Auto-runs on push/PR |
+| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/docs-quality.yml` (main), `.github/workflows/develop-quality.yml` (develop) | Auto-runs on push/PR |
 
 ### Local Setup for Contributors
 

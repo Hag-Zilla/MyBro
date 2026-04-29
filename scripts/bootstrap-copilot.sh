@@ -73,9 +73,11 @@ copy_file() {
   cp "${src}" "${dest}"
 }
 
-for file in ".github/copilot-instructions.md"; do
-  [[ -f "${TMP_DIR}/${file}" ]] && copy_file "${TMP_DIR}/${file}" "${TARGET_REPO}/${file}"
-done
+if [[ -f "${TMP_DIR}/.github/copilot-instructions.md" ]]; then
+  copy_file \
+    "${TMP_DIR}/.github/copilot-instructions.md" \
+    "${TARGET_REPO}/.github/copilot-instructions.md"
+fi
 
 for dir in ".github/instructions" ".github/prompts" ".github/golden-prompts"; do
   if [[ -d "${TMP_DIR}/${dir}" ]]; then

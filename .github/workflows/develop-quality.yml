@@ -1,11 +1,11 @@
-name: dev-quality
+name: develop-quality
 "on":
   push:
     branches:
-      - dev
+      - develop
   pull_request:
     branches:
-      - dev
+      - develop
 
 jobs:
   validate:

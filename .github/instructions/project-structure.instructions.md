@@ -33,7 +33,7 @@ project-root/
 │   ├── prompts/                # Reusable prompt templates
 │   └── workflows/              # GitHub Actions CI/CD
 │       ├── docs-quality.yml    # Full pipeline (main branch)
-│       └── dev-quality.yml     # Lightweight pipeline (dev branch)
+│       └── develop-quality.yml # Lightweight pipeline (develop branch)
 ├── README.md
 ├── CONTRIBUTING.md
 ├── pyproject.toml
