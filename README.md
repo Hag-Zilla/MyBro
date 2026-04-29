@@ -72,6 +72,13 @@ Documented priority and conflict-resolution rules ensure specific instructions o
 
 **Pre-commit Integration**
 Local hooks run markdown linting, spellcheck, and link checks before each commit—fail fast, fix locally.
+Install `lychee` locally to run the same strict link check as CI:
+
+```bash
+sudo snap install lychee
+export PATH="$PATH:/snap/bin"
+lychee --version
+```
 
 **Consolidated Agent Rules**
 Agent behavior guidance (Copilot, code review bots) is consolidated in `.github/copilot-instructions.md` to keep a single source of truth.
@@ -498,7 +505,7 @@ Detailed documentation for specialized topics:
 
 - **Copilot Documentation**
   - [GitHub Copilot Official Docs](https://docs.github.com/en/copilot)
-  - [Custom Instructions Guide](https://docs.github.com/en/copilot/customizing-copilot)
+  - [Custom Instructions Guide](https://docs.github.com/en/copilot/how-tos/provide-context)
 
 - **Industry Standards**
   - [PEP 8 — Python Style Guide](https://pep8.org/)
@@ -546,7 +553,7 @@ We welcome contributions! MyBro is designed to grow and improve with community i
 
 - **Questions about Copilot?** Check the [GitHub Copilot documentation](https://docs.github.com/copilot)
 - **Issues with MyBro instructions?** Open an [issue on GitHub](https://github.com/Hag-Zilla/MyBro/issues)
-- **Want to discuss improvements?** Start a [discussion on GitHub](https://github.com/Hag-Zilla/MyBro/discussions)
+- **Want to discuss improvements?** Open an [issue on GitHub](https://github.com/Hag-Zilla/MyBro/issues)
 
 ### Maintainer
 
@@ -595,6 +602,6 @@ For commercial use or alternative licensing, contact the maintainers.
   <p>
     <a href="https://github.com/Hag-Zilla/MyBro">View on GitHub</a> ·
     <a href="https://github.com/Hag-Zilla/MyBro/issues">Report Issue</a> ·
-    <a href="https://github.com/Hag-Zilla/MyBro/discussions">Start Discussion</a>
+    <a href="https://github.com/Hag-Zilla/MyBro/issues">Open Issue</a>
   </p>
 </div>
