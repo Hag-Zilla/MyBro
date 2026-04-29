@@ -237,6 +237,7 @@ MyBro/
 │   │   ├── add-auth.prompt.md            # Template: Add authentication
 │   │   ├── add-prometheus-metrics.prompt.md  # Template: Instrument metrics
 │   │   ├── docker-k8s.prompt.md          # Template: Docker & Kubernetes
+│   │   ├── write-tests.prompt.md         # Template: Pytest patterns
 │   │   └── code-review.prompt.md         # Template: Code review checklist
 │   │
 │   ├── golden-prompts/                   # High-quality example scenarios
@@ -246,8 +247,7 @@ MyBro/
 │   │   └── bootstrap-copilot.sh          # Setup script for new projects
 │   │
 │   └── workflows/                        # GitHub Actions CI
-│       ├── main-quality.yml              # Full pipeline (main): lint, spell, links, validate
-│       └── develop-quality.yml           # Lightweight pipeline (develop): lint + spell only
+│       └── quality.yml                   # Unified pipeline: lint, spell; link check on main only
 │
 ├── .pre-commit-config.yaml                # Pre-commit hook definitions
 ├── .github/.markdownlint.json             # Markdown linting rules
@@ -283,6 +283,7 @@ MyBro provides specialized instruction files covering 12 domain areas, plus repo
 | **Observability** | [observability.instructions.md](.github/instructions/observability.instructions.md) | [add-prometheus-metrics.prompt.md](.github/prompts/add-prometheus-metrics.prompt.md) | Prometheus metrics, Grafana, structured logging (Loki) |
 | **Environment Config** | [environments.instructions.md](.github/instructions/environments.instructions.md) | — | Config management, secrets, environment variables |
 | **Docker & Kubernetes** | — | [docker-k8s.prompt.md](.github/prompts/docker-k8s.prompt.md) | Multi-stage builds, resource limits, health checks |
+| **Testing** | — | [write-tests.prompt.md](.github/prompts/write-tests.prompt.md) | Pytest patterns, fixtures, test organization |
 | **Code Review** | — | [code-review.prompt.md](.github/prompts/code-review.prompt.md) | Review checklists, best practices, standards |
 
 ---
@@ -324,8 +325,8 @@ To change either, edit the `## Language Configuration` section in
 
 | Branch | CI/CD scope |
 |---|---|
-| `main` | Full pipeline: lint, test, security scan, build, deploy — requires review |
-| `develop` | Lightweight: lint + fast tests only — for iterative work |
+| `main` | Full pipeline: lint, spell, link validation — requires review |
+| `develop` | Lightweight: lint + spell only — for iterative work |
 
 ### Customize Instructions for Your Team
 
@@ -463,7 +464,7 @@ Links to related docs or templates.
 | **markdownlint** | Markdown style validation | `.github/.markdownlint.json` | `pre-commit install` |
 | **cspell** | Spell-checking for instructions | `.github/.cspell.json` | `pre-commit install` |
 | **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
-| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/main-quality.yml` (main), `.github/workflows/develop-quality.yml` (develop) | Auto-runs on push/PR |
+| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/quality.yml` (main + develop) | Auto-runs on push/PR |
 
 ### Local Setup for Contributors
 

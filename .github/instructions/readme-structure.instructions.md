@@ -40,7 +40,7 @@ pattern and minimum required information.
 ## Badges (standard set)
 
 ```markdown
-![CI](https://github.com/<org>/<repo>/actions/workflows/main-quality.yml/badge.svg)
+![CI](https://github.com/<org>/<repo>/actions/workflows/quality.yml/badge.svg)
 ![GitHub release](https://img.shields.io/github/v/release/<org>/<repo>)
 ![License](https://img.shields.io/badge/License-<SPDX>-lightgrey.svg)
 ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)
@@ -53,7 +53,7 @@ Replace `<org>`, `<repo>`, and `<SPDX>` with actual values.
 ````markdown
 # MyProject — Short tagline
 
-![CI](https://github.com/org/myproject/actions/workflows/main-quality.yml/badge.svg)
+![CI](https://github.com/org/myproject/actions/workflows/quality.yml/badge.svg)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
 
 ## About

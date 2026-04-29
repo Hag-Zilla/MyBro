@@ -32,8 +32,7 @@ project-root/
 │   ├── instructions/           # Domain-specific instruction files
 │   ├── prompts/                # Reusable prompt templates
 │   └── workflows/              # GitHub Actions CI/CD
-│       ├── main-quality.yml    # Full pipeline (main branch)
-│       └── develop-quality.yml # Lightweight pipeline (develop branch)
+│       └── quality.yml         # Unified pipeline (main + develop branches)
 ├── README.md
 ├── CONTRIBUTING.md
 ├── pyproject.toml
