@@ -73,8 +73,8 @@ Documented priority and conflict-resolution rules ensure specific instructions o
 **Pre-commit Integration**
 Local hooks run markdown linting and spellcheck before each commit—fail fast, fix locally.
 
-**Agent Behavior Rules** (AGENTS.md)
-Explicit guidelines for AI agents (Copilot, code review bots) covering permissions, PR scope, security, and workflows.
+**Consolidated Agent Rules**
+Agent behavior guidance (Copilot, code review bots) is consolidated in `.github/copilot-instructions.md` to keep a single source of truth.
 
 ---
 
@@ -121,7 +121,6 @@ Expected output: ✓ All checks pass (markdownlint, cspell, instruction frontmat
 | `.github/instructions/` | Domain-specific rules (path-based activation) | [Browse domains](#domain-coverage) |
 | `.github/prompts/` | Ready-to-use prompt templates | [EDA template](.github/prompts/eda-analysis.prompt.md) |
 | `.github/golden-prompts/` | Reference examples and expected outputs | [View examples](.github/golden-prompts/) |
-| `AGENTS.md` | Behavior rules for AI agents | [Read it](./AGENTS.md) |
 | `CONTRIBUTING.md` | Contribution workflow and PR requirements | [Read it](./CONTRIBUTING.md) |
 
 ### 5) Verify Installation
@@ -200,7 +199,6 @@ MyBro/
 ├── README.md                              # This file
 ├── LICENSE                                # CC BY-NC 4.0 license
 ├── CONTRIBUTING.md                        # Contribution workflow & PR checklist
-├── AGENTS.md                              # AI agent behavior rules
 ├── followup.txt                           # Follow-up tasks & roadmap
 │
 ├── .github/
@@ -295,11 +293,10 @@ curl -sSL https://raw.githubusercontent.com/Hag-Zilla/MyBro/main/scripts/bootstr
 
 This downloads:
 
-- `.github/copilot-instructions.md` (global rules)
-- `AGENTS.md` (agent behavior rules)
+- `.github/copilot-instructions.md` (global + agent behavior rules)
 - All `.github/instructions/*.instructions.md` files
 - All `.github/prompts/*.prompt.md` templates
-- `CONTRIBUTING.md`
+- `.github/golden-prompts/` reference scenarios
 
 ### Language Configuration
 
@@ -488,7 +485,6 @@ Detailed documentation for specialized topics:
 | Document | Focus | Audience |
 |---|---|---|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution workflow, PR checklist, commit conventions | Contributors, maintainers |
-| [AGENTS.md](AGENTS.md) | Behavior rules for AI agents (Copilot, code review bots) | Developers, team leads |
 | [.github/copilot-instructions.md](.github/copilot-instructions.md) | Global coding standards (PEP 8, security, testing) | All developers |
 | [.github/instructions/](instructions/) | Domain-specific guidance (MLOps, FastAPI, auth, etc.) | Domain specialists |
 | [.github/prompts/](prompts/) | Ready-to-use prompt templates | Copilot Chat users |

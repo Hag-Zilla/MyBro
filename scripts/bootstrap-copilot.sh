@@ -11,7 +11,6 @@
 #
 # What is fetched from Hag-Zilla/MyBro (main branch):
 #   .github/copilot-instructions.md   — global Copilot behaviour rules
-#   AGENTS.md                         — agent governance rules
 #   .github/instructions/             — all path-specific instruction files
 #   .github/prompts/                  — all reusable prompt templates
 #   .github/golden-prompts/           — scenario references and scorecards
@@ -52,7 +51,6 @@ git clone \
 
 git -C "${TMP_DIR}" sparse-checkout set \
   ".github/copilot-instructions.md" \
-  "AGENTS.md" \
   ".github/instructions" \
   ".github/prompts" \
   ".github/golden-prompts"
@@ -75,7 +73,7 @@ copy_file() {
   cp "${src}" "${dest}"
 }
 
-for file in ".github/copilot-instructions.md" "AGENTS.md"; do
+for file in ".github/copilot-instructions.md"; do
   [[ -f "${TMP_DIR}/${file}" ]] && copy_file "${TMP_DIR}/${file}" "${TARGET_REPO}/${file}"
 done
 
@@ -91,5 +89,5 @@ done
 echo ""
 echo "Done. Review the added files, then commit:"
 echo ""
-echo "  git add AGENTS.md .github/copilot-instructions.md .github/instructions .github/prompts .github/golden-prompts"
+echo "  git add .github/copilot-instructions.md .github/instructions .github/prompts .github/golden-prompts"
 echo "  git commit -m \"chore: add Copilot instructions from MyBro\""

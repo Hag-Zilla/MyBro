@@ -35,7 +35,6 @@ project-root/
 │       ├── docs-quality.yml    # Full pipeline (main branch)
 │       └── dev-quality.yml     # Lightweight pipeline (dev branch)
 ├── README.md
-├── AGENTS.md
 ├── CONTRIBUTING.md
 ├── pyproject.toml
 ├── .pre-commit-config.yaml
