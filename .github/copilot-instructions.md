@@ -34,7 +34,46 @@ quality, and prompt governance.
 - Target Audience: data scientists, ML engineers, MLOps engineers, data engineers,
   backend developers.
 
-For agent-specific behaviour rules (permissions, governance, workflow constraints), see [AGENTS.md](../AGENTS.md).
+## Agent Behaviour
+
+### General
+
+- Treat this file as the authoritative style reference for agent behaviour.
+- Prefer minimal, targeted changes over broad refactors.
+- Each change must be independently testable or documented if a test is not applicable.
+
+### Custom Rules (User Preferences)
+
+- Never perform a `git commit`, `git push`, or any version control write operation on
+  behalf of the user. Propose the command instead.
+- Be direct and honest. Do not flatter or soften incorrect assumptions.
+- Always ask clarifying questions before proceeding when a request is ambiguous,
+  incomplete, or could be interpreted in multiple ways.
+- When any file in the repository is created, moved, renamed, or deleted, update
+  `README.md` to reflect the change before considering the task complete.
+- When proposing solutions, reference industry best practices and state-of-the-art
+  approaches; explain trade-offs and justify recommendations.
+
+### Instruction and Prompt Files
+
+- When creating a new `.instructions.md` file, use
+  `.github/instructions/TEMPLATE.instructions.md` as the base.
+- `applyTo` glob patterns must be specific enough to avoid unintended matches.
+- Prompt files (`.prompt.md`) must include a `#file:` reference to
+  `.github/copilot-instructions.md`.
+
+### Expected Response Format
+
+- **Be minimal**: default to 1-3 sentences. Expand only when the user explicitly asks
+  (e.g., "explain", "elaborate", "detail", "give an example").
+- Provide a concise and testable implementation, with PEP 257-compliant docstrings and
+  type annotations.
+- Add a small `pytest` test when the feature is non-trivial.
+- For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart
+  snippet) and a brief usage note.
+- For commands and instructions, use code blocks with the correct language (bash,
+  Dockerfile, yaml).
+- Never include secrets or sensitive values in plain text.
 
 ## General Preferences
 
@@ -121,20 +160,6 @@ For agent-specific behaviour rules (permissions, governance, workflow constraint
 - This file must remain at the root `.github/copilot-instructions.md` to be recognized.
 - To propose a modification: open a small and explicit PR, include tests and validation
   instructions.
-
-## Expected Response Format
-
-- **Be minimal**: default to the shortest correct answer; expand only when explicitly
-  asked. Avoid restating the question, filler sentences, or summaries of what was done.
-  This saves tokens and keeps interactions efficient.
-- Provide a concise and testable implementation, with PEP 257-compliant docstrings and
-  type annotations.
-- Add a small `pytest` test when the feature is non-trivial.
-- For infrastructure changes, provide the complete manifest (`Dockerfile`, `helm` chart
-  snippet) and a brief usage note.
-- For commands and instructions, use code blocks with the correct language (bash,
-  Dockerfile, yaml).
-- Never include secrets or sensitive values in plain text.
 
 ## Exclusions and Best Practices
 

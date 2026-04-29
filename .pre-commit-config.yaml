@@ -16,11 +16,19 @@ repos:
       - id: markdownlint-cli2
         args: [--config, .github/.markdownlint.json]
 
-  # Custom validation script
+  # Spelling checks (aligned with CI)
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: v9.8.0
+    hooks:
+      - id: cspell
+        files: \.md$
+        args: [--config, .github/.cspell.json]
+
+  # Link checks (aligned with CI lychee settings)
   - repo: local
     hooks:
-      - id: validate-instructions
-        name: Validate instruction files
-        entry: python .github/scripts/validate_instructions.py
-        language: python
+      - id: link-check
+        name: Link check (lychee)
+        entry: lychee --no-progress --verbose --max-concurrency 8 ./**/*.md
+        language: system
         pass_filenames: false

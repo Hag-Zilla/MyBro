@@ -52,42 +52,49 @@ MyBro is ideal for **Python teams working on data, ML, and API projects** who us
 
 ## Key Features
 
-✨ **Global Custom Instructions**
+**Global Custom Instructions**
 Centralized guidance file (`copilot-instructions.md`) applied across all Copilot interactions, covering code style, security, testing, and design patterns.
 
-🎯 **Domain-Specific Instructions**
-Specialized `.instructions.md` files for 13+ domains (ML training, data engineering, FastAPI, authentication, observability, and more) that activate automatically based on file path patterns.
+**Domain-Specific Instructions**
+Specialized `*.instructions.md` files covering 12 domain areas (ML training, data engineering, FastAPI, authentication, observability, and more), plus repository-wide structure rules, that activate automatically based on file path patterns.
 
-🔄 **Reusable Prompt Templates**
-Pre-crafted `.prompt.md` files for common workflows (data pipelines, Prometheus metrics, authentication flows)—copy, customize, and submit to Copilot.
+**Reusable Prompt Templates**
+Pre-crafted `*.prompt.md` files for common workflows (data pipelines, Prometheus metrics, authentication flows)—copy, customize, and submit to Copilot.
 
-✅ **Golden Prompt Scenarios**
+**Golden Prompt Scenarios**
 High-quality example prompts and expected outputs for reference and learning.
 
-🛡️ **Automated Quality Governance**
-GitHub Actions CI workflows validate instruction syntax, check for conflicts, ensure proper formatting, and detect broken links—catch issues before merge.
+**Automated Quality Checks**
+GitHub Actions CI workflows validate instruction structure, formatting, spelling, and broken links—catch documentation and instruction issues before merge.
 
-📊 **Inverse Priority Resolution**
-Clear conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence.
+**Clear Instruction Priority**
+Documented priority and conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence when specificity is equal.
 
-🔧 **Pre-commit Integration**
-Local hooks run markdown linting, spellcheck, and instruction validation before each commit—fail fast, fix locally.
+**Pre-commit Integration**
+Local hooks run markdown linting, spellcheck, and link checks before each commit—fail fast, fix locally.
+Install `lychee` locally to run the same strict link check as CI:
 
-📖 **Agent Behavior Rules** (AGENTS.md)
-Explicit guidelines for AI agents (Copilot, code review bots) covering permissions, PR scope, security, and workflows.
+```bash
+sudo snap install lychee
+export PATH="$PATH:/snap/bin"
+lychee --version
+```
+
+**Consolidated Agent Rules**
+Agent behavior guidance (Copilot, code review bots) is consolidated in `.github/copilot-instructions.md` to keep a single source of truth.
 
 ---
 
 ## Quick Start
 
-### 1️⃣ Clone and Explore the Repository
+### 1) Clone and Explore the Repository
 
 ```bash
 git clone https://github.com/Hag-Zilla/MyBro.git
 cd MyBro
 ```
 
-### 2️⃣ Activate the Custom Instructions in Your VS Code Workspace
+### 2) Activate the Custom Instructions in Your VS Code Workspace
 
 Once cloned, the `.github/copilot-instructions.md` file is automatically recognized by VS Code (if you have the Copilot Chat extension installed). To verify activation:
 
@@ -96,7 +103,7 @@ Once cloned, the `.github/copilot-instructions.md` file is automatically recogni
 3. Search for **"Copilot"** and verify that custom instructions are enabled
 4. Check the Copilot Chat panel—it should reference instructions from this repo
 
-### 3️⃣ Install Pre-commit Hooks (Recommended)
+### 3) Install Pre-commit Hooks (Recommended)
 
 Set up automated quality checks to run before each commit:
 
@@ -111,20 +118,19 @@ Verify the installation:
 pre-commit run --all-files
 ```
 
-Expected output: ✓ All checks pass (markdownlint, spellcheck, link validation, instruction frontmatter validation).
+Expected output: ✓ All checks pass (markdownlint, cspell, link check).
 
-### 4️⃣ Essential Configuration Files
+### 4) Essential Configuration Files
 
 | File/Directory | Purpose | Example |
 |---|---|---|
-| `.github/copilot-instructions.md` | Global Copilot behavior (code style, security, logging) | [Read it](./github/copilot-instructions.md) |
+| `.github/copilot-instructions.md` | Global Copilot behavior (code style, security, logging) | [Read it](./.github/copilot-instructions.md) |
 | `.github/instructions/` | Domain-specific rules (path-based activation) | [Browse domains](#domain-coverage) |
 | `.github/prompts/` | Ready-to-use prompt templates | [EDA template](.github/prompts/eda-analysis.prompt.md) |
 | `.github/golden-prompts/` | Reference examples and expected outputs | [View examples](.github/golden-prompts/) |
-| `AGENTS.md` | Behavior rules for AI agents | [Read it](./AGENTS.md) |
 | `CONTRIBUTING.md` | Contribution workflow and PR requirements | [Read it](./CONTRIBUTING.md) |
 
-### 5️⃣ Verify Installation
+### 5) Verify Installation
 
 Test that the setup works by opening Copilot Chat and running a simple prompt:
 
@@ -145,7 +151,7 @@ If output doesn't follow these conventions, instructions may not be loaded. Chec
 pre-commit run --all-files
 ```
 
-### 6️⃣ Advanced: Clone into Other Projects
+### 6) Advanced: Clone into Other Projects
 
 To use MyBro's instructions in another project:
 
@@ -200,7 +206,6 @@ MyBro/
 ├── README.md                              # This file
 ├── LICENSE                                # CC BY-NC 4.0 license
 ├── CONTRIBUTING.md                        # Contribution workflow & PR checklist
-├── AGENTS.md                              # AI agent behavior rules
 ├── followup.txt                           # Follow-up tasks & roadmap
 │
 ├── .github/
@@ -210,6 +215,8 @@ MyBro/
 │   │
 │   ├── instructions/                     # Domain-specific instruction files
 │   │   ├── TEMPLATE.instructions.md      # Template for new domain instructions
+│   │   ├── project-structure.instructions.md  # Expected project layout (all repos)
+│   │   ├── readme-structure.instructions.md   # Required README sections and format
 │   │   ├── ml-training.instructions.md   # ML model training best practices
 │   │   ├── ml-inference.instructions.md  # ML model serving & inference
 │   │   ├── eda.instructions.md           # Exploratory data analysis (EDA)
@@ -239,11 +246,12 @@ MyBro/
 │   │   └── bootstrap-copilot.sh          # Setup script for new projects
 │   │
 │   └── workflows/                        # GitHub Actions CI
-│       └── docs-quality.yml              # Lint, validate, check links
+│       ├── docs-quality.yml              # Full pipeline (main): lint, spell, links, validate
+│       └── dev-quality.yml               # Lightweight pipeline (dev): lint + spell only
 │
 ├── .pre-commit-config.yaml                # Pre-commit hook definitions
-├── .markdownlint.json                     # Markdown linting rules
-├── .cspell.json                           # Spell-check dictionary
+├── .github/.markdownlint.json             # Markdown linting rules
+├── .github/.cspell.json                   # Spell-check dictionary
 │
 ├── scripts/                               # Repository-level utilities
 │   └── bootstrap-copilot.sh               # Initialize MyBro in new projects
@@ -258,7 +266,7 @@ MyBro/
 
 ## Domain Coverage
 
-MyBro provides specialized instruction files for 14+ domains. Each file activates automatically when you edit files matching its `applyTo` glob pattern:
+MyBro provides specialized instruction files covering 12 domain areas, plus repository-wide structure and README standards. Each file activates automatically when you edit files matching its `applyTo` glob pattern:
 
 | Domain | Instruction File | Prompt Template | Focus Area |
 |---|---|---|---|
@@ -292,11 +300,10 @@ curl -sSL https://raw.githubusercontent.com/Hag-Zilla/MyBro/main/scripts/bootstr
 
 This downloads:
 
-- `.github/copilot-instructions.md` (global rules)
-- `AGENTS.md` (agent behavior rules)
+- `.github/copilot-instructions.md` (global + agent behavior rules)
 - All `.github/instructions/*.instructions.md` files
 - All `.github/prompts/*.prompt.md` templates
-- `CONTRIBUTING.md`
+- `.github/golden-prompts/` reference scenarios
 
 ### Language Configuration
 
@@ -374,8 +381,6 @@ Every commit triggers automated checks:
 
 - ✅ Markdown structure and syntax (markdownlint)
 - ✅ Spelling and dictionary correctness (cspell)
-- ✅ YAML frontmatter validation (custom validator)
-- ✅ Instruction conflict detection
 - ✅ Link validation (no broken references)
 - ✅ JSON/YAML syntax correctness
 
@@ -438,7 +443,7 @@ Links to related docs or templates.
 
 **Location:** `.github/golden-prompts/`
 
-**Purpose:** High-quality scenario examples and expected outputs—used for regression testing and instruction validation.
+**Purpose:** High-quality scenario examples and expected outputs—used for regression testing and prompt/instruction quality review.
 
 **Format:**
 
@@ -455,10 +460,10 @@ Links to related docs or templates.
 
 | Tool | Purpose | Config File | Setup |
 |---|---|---|---|
-| **markdownlint** | Markdown style validation | `.markdownlint.json` | `pre-commit install` |
-| **cspell** | Spell-checking for instructions | `.cspell.json` | `pre-commit install` |
+| **markdownlint** | Markdown style validation | `.github/.markdownlint.json` | `pre-commit install` |
+| **cspell** | Spell-checking for instructions | `.github/.cspell.json` | `pre-commit install` |
 | **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
-| **GitHub Actions** | CI/CD validation on every push | `.github/workflows/docs-quality.yml` | Auto-runs on PR |
+| **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/docs-quality.yml` (main), `.github/workflows/dev-quality.yml` (dev) | Auto-runs on push/PR |
 
 ### Local Setup for Contributors
 
@@ -487,11 +492,10 @@ Detailed documentation for specialized topics:
 | Document | Focus | Audience |
 |---|---|---|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution workflow, PR checklist, commit conventions | Contributors, maintainers |
-| [AGENTS.md](AGENTS.md) | Behavior rules for AI agents (Copilot, code review bots) | Developers, team leads |
 | [.github/copilot-instructions.md](.github/copilot-instructions.md) | Global coding standards (PEP 8, security, testing) | All developers |
-| [.github/instructions/](instructions/) | Domain-specific guidance (MLOps, FastAPI, auth, etc.) | Domain specialists |
-| [.github/prompts/](prompts/) | Ready-to-use prompt templates | Copilot Chat users |
-| [.github/golden-prompts/](golden-prompts/) | High-quality scenario examples | Instruction authors |
+| [.github/instructions/](.github/instructions/) | Domain-specific guidance (MLOps, FastAPI, auth, etc.) | Domain specialists |
+| [.github/prompts/](.github/prompts/) | Ready-to-use prompt templates | Copilot Chat users |
+| [.github/golden-prompts/](.github/golden-prompts/) | High-quality scenario examples | Instruction authors |
 
 ---
 
@@ -501,7 +505,7 @@ Detailed documentation for specialized topics:
 
 - **Copilot Documentation**
   - [GitHub Copilot Official Docs](https://docs.github.com/en/copilot)
-  - [Custom Instructions Guide](https://docs.github.com/en/copilot/customizing-copilot)
+  - [Custom Instructions Guide](https://docs.github.com/en/copilot/how-tos/provide-context)
 
 - **Industry Standards**
   - [PEP 8 — Python Style Guide](https://pep8.org/)
@@ -517,8 +521,8 @@ Detailed documentation for specialized topics:
 ### Related Projects
 
 - **MyBro on GitHub**: [Hag-Zilla/MyBro](https://github.com/Hag-Zilla/MyBro)
-- **cspell Dictionary**: [MyBro .cspell.json](.cspell.json)
-- **markdownlint Config**: [MyBro .markdownlint.json](.markdownlint.json)
+- **cspell Dictionary**: [MyBro .github/.cspell.json](.github/.cspell.json)
+- **markdownlint Config**: [MyBro .github/.markdownlint.json](.github/.markdownlint.json)
 
 ---
 
@@ -535,8 +539,8 @@ We welcome contributions! MyBro is designed to grow and improve with community i
 | Symptom | Likely Cause | Fix |
 |---|---|---|
 | Instructions seem inactive in Copilot Chat | File not found or workspace not opened from root | Ensure `.github/copilot-instructions.md` exists and open VS Code from the repo root |
-| `pre-commit run` fails on markdownlint | Formatting or structure violation | Check the rule in `.markdownlint.json`; fix indentation, blank lines, or heading levels |
-| `pre-commit run` fails on cspell | Unknown word in an instruction file | Add the word to the `words` array in `.cspell.json` |
+| `pre-commit run` fails on markdownlint | Formatting or structure violation | Check the rule in `.github/.markdownlint.json`; fix indentation, blank lines, or heading levels |
+| `pre-commit run` fails on cspell | Unknown word in an instruction file | Add the word to the `words` array in `.github/.cspell.json` |
 | Not sure which instruction applies to a file | Glob pattern mismatch | Check the `applyTo` frontmatter in each `.instructions.md` against your file path |
 | Two instructions seem contradictory | Overlapping glob patterns | The more specific glob wins — see [Governance Model](#governance-model) |
 | CI passes locally but fails on GitHub | Environment or hook version mismatch | Pin hook versions in `.pre-commit-config.yaml` and ensure they match CI config |
@@ -549,7 +553,7 @@ We welcome contributions! MyBro is designed to grow and improve with community i
 
 - **Questions about Copilot?** Check the [GitHub Copilot documentation](https://docs.github.com/copilot)
 - **Issues with MyBro instructions?** Open an [issue on GitHub](https://github.com/Hag-Zilla/MyBro/issues)
-- **Want to discuss improvements?** Start a [discussion on GitHub](https://github.com/Hag-Zilla/MyBro/discussions)
+- **Want to discuss improvements?** Open an [issue on GitHub](https://github.com/Hag-Zilla/MyBro/issues)
 
 ### Maintainer
 
@@ -598,6 +602,6 @@ For commercial use or alternative licensing, contact the maintainers.
   <p>
     <a href="https://github.com/Hag-Zilla/MyBro">View on GitHub</a> ·
     <a href="https://github.com/Hag-Zilla/MyBro/issues">Report Issue</a> ·
-    <a href="https://github.com/Hag-Zilla/MyBro/discussions">Start Discussion</a>
+    <a href="https://github.com/Hag-Zilla/MyBro/issues">Open Issue</a>
   </p>
 </div>
