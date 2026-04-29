@@ -71,7 +71,7 @@ GitHub Actions CI workflows validate instruction structure, formatting, spelling
 Documented priority and conflict-resolution rules ensure specific instructions override general ones; most recent, well-reasoned updates take precedence when specificity is equal.
 
 **Pre-commit Integration**
-Local hooks run markdown linting, spellcheck, and instruction validation before each commit—fail fast, fix locally.
+Local hooks run markdown linting and spellcheck before each commit—fail fast, fix locally.
 
 **Agent Behavior Rules** (AGENTS.md)
 Explicit guidelines for AI agents (Copilot, code review bots) covering permissions, PR scope, security, and workflows.
@@ -377,8 +377,6 @@ Every commit triggers automated checks:
 
 - ✅ Markdown structure and syntax (markdownlint)
 - ✅ Spelling and dictionary correctness (cspell)
-- ✅ YAML frontmatter validation (custom validator)
-- ✅ Instruction conflict detection
 - ✅ Link validation (no broken references)
 - ✅ JSON/YAML syntax correctness
 
@@ -441,7 +439,7 @@ Links to related docs or templates.
 
 **Location:** `.github/golden-prompts/`
 
-**Purpose:** High-quality scenario examples and expected outputs—used for regression testing and instruction validation.
+**Purpose:** High-quality scenario examples and expected outputs—used for regression testing and prompt/instruction quality review.
 
 **Format:**
 

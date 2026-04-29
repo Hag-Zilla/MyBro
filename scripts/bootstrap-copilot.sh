@@ -14,12 +14,13 @@
 #   AGENTS.md                         — agent governance rules
 #   .github/instructions/             — all path-specific instruction files
 #   .github/prompts/                  — all reusable prompt templates
+#   .github/golden-prompts/           — scenario references and scorecards
 #
 # Requirements: git, bash 4+
 
 set -euo pipefail
 
-MYBRO_REPO="git@github.com:Hag-Zilla/MyBro.git"
+MYBRO_REPO="https://github.com/Hag-Zilla/MyBro.git"
 MYBRO_BRANCH="main"
 
 # ── Checks ────────────────────────────────────────────────────────────────────
@@ -53,7 +54,8 @@ git -C "${TMP_DIR}" sparse-checkout set \
   ".github/copilot-instructions.md" \
   "AGENTS.md" \
   ".github/instructions" \
-  ".github/prompts"
+  ".github/prompts" \
+  ".github/golden-prompts"
 
 # ── Copy into current repo ────────────────────────────────────────────────────
 
@@ -77,17 +79,17 @@ for file in ".github/copilot-instructions.md" "AGENTS.md"; do
   [[ -f "${TMP_DIR}/${file}" ]] && copy_file "${TMP_DIR}/${file}" "${TARGET_REPO}/${file}"
 done
 
-for dir in ".github/instructions" ".github/prompts"; do
+for dir in ".github/instructions" ".github/prompts" ".github/golden-prompts"; do
   if [[ -d "${TMP_DIR}/${dir}" ]]; then
     while IFS= read -r -d '' src_file; do
-      rel="${src_file#"${TMP_DIR}/"}"
-      copy_file "${src_file}" "${TARGET_REPO}/${rel}"
-    done < <(find "${TMP_DIR}/${dir}" -type f -name "*.md" -print0)
+      local_rel="${src_file#"${TMP_DIR}/"}"
+      copy_file "${src_file}" "${TARGET_REPO}/${local_rel}"
+    done < <(find "${TMP_DIR}/${dir}" -type f -print0)
   fi
 done
 
 echo ""
 echo "Done. Review the added files, then commit:"
 echo ""
-echo "  git add .github/copilot-instructions.md AGENTS.md .github/instructions .github/prompts"
+echo "  git add AGENTS.md .github/copilot-instructions.md .github/instructions .github/prompts .github/golden-prompts"
 echo "  git commit -m \"chore: add Copilot instructions from MyBro\""

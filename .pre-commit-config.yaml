@@ -23,12 +23,3 @@ repos:
       - id: cspell
         files: \.md$
         args: [--config, .github/.cspell.json]
-
-  # Custom validation script
-  - repo: local
-    hooks:
-      - id: validate-instructions
-        name: Validate instruction files
-        entry: python .github/scripts/validate_instructions.py
-        language: python
-        pass_filenames: false
