@@ -72,12 +72,13 @@ Documented priority and conflict-resolution rules ensure specific instructions o
 
 **Pre-commit Integration**
 Local hooks run markdown linting, spellcheck, and link checks before each commit—fail fast, fix locally.
-Install `lychee` locally to run the same strict link check as CI:
+The link check hook uses the official `lychee` hook published for `pre-commit`.
+This avoids host `PATH` issues during `git commit`, keeps the setup declarative in `.pre-commit-config.yaml`, and is closer to the recommended upstream integration than a local wrapper script.
+
+Verify the hook can be installed locally:
 
 ```bash
-sudo snap install lychee
-export PATH="$PATH:/snap/bin"
-lychee --version
+uv run pre-commit install-hooks
 ```
 
 **Consolidated Agent Rules**
@@ -124,7 +125,7 @@ Verify the installation:
 uv run pre-commit run --all-files
 ```
 
-Expected output: ✓ All checks pass (markdownlint, cspell, link check).
+Expected output: ✓ All checks pass (markdownlint, cspell, link check). The first link check run may take longer because pre-commit needs to install the pinned `lychee` hook environment.
 
 ### 4) Essential Configuration Files
 
@@ -467,7 +468,7 @@ Links to related docs or templates.
 |---|---|---|---|
 | **markdownlint** | Markdown style validation | `.github/.markdownlint.json` | `pre-commit install` |
 | **cspell** | Spell-checking for instructions | `.github/.cspell.json` | `pre-commit install` |
-| **pre-commit** | Run hooks before each commit | `.pre-commit-config.yaml` | `pip install pre-commit && pre-commit install` |
+| **pre-commit** | Run hooks before each commit, including the official pinned `lychee` hook for link checks | `.pre-commit-config.yaml` | `uv sync --group dev && uv run pre-commit install` |
 | **GitHub Actions** | CI/CD validation on push/PR | `.github/workflows/quality.yml` (main + develop) | Auto-runs on push/PR |
 
 ### Local Setup for Contributors
@@ -477,15 +478,18 @@ Links to related docs or templates.
 git clone https://github.com/Hag-Zilla/MyBro.git
 cd MyBro
 
-# 2. Install pre-commit hooks (one-time)
-pip install pre-commit
-pre-commit install
+# 2. Install dev dependencies and pre-commit hooks (one-time)
+uv sync --group dev
+uv run pre-commit install
 
-# 3. Make changes and commit
+# 3. Pre-install hook environments
+uv run pre-commit install-hooks
+
+# 4. Make changes and commit
 # Hooks automatically validate before commit
 
-# 4. Or manually run all checks
-pre-commit run --all-files
+# 5. Or manually run all checks
+uv run pre-commit run --all-files
 ```
 
 ---
@@ -546,6 +550,7 @@ We welcome contributions! MyBro is designed to grow and improve with community i
 | Instructions seem inactive in Copilot Chat | File not found or workspace not opened from root | Ensure `.github/copilot-instructions.md` exists and open VS Code from the repo root |
 | `pre-commit run` fails on markdownlint | Formatting or structure violation | Check the rule in `.github/.markdownlint.json`; fix indentation, blank lines, or heading levels |
 | `pre-commit run` fails on cspell | Unknown word in an instruction file | Add the word to the `words` array in `.github/.cspell.json` |
+| `pre-commit run` fails while installing the link check hook | Network restrictions or a corrupted pre-commit cache | Run `uv run pre-commit clean`, then rerun `uv run pre-commit install-hooks` or `uv run pre-commit run lychee --all-files` |
 | Not sure which instruction applies to a file | Glob pattern mismatch | Check the `applyTo` frontmatter in each `.instructions.md` against your file path |
 | Two instructions seem contradictory | Overlapping glob patterns | The more specific glob wins — see [Governance Model](#governance-model) |
 | CI passes locally but fails on GitHub | Environment or hook version mismatch | Pin hook versions in `.pre-commit-config.yaml` and ensure they match CI config |
