@@ -311,6 +311,10 @@ This downloads:
 - All `.github/prompts/*.prompt.md` templates
 - `.github/golden-prompts/` reference scenarios
 
+In each target repository, create `./docs/STANDARDS.md` at the project root to define
+local development standards. Copilot is configured to explicitly check and apply this
+file when present, in addition to MyBro global and domain-specific instructions.
+
 ### Language Configuration
 
 Two language settings are declared at the top of `copilot-instructions.md`:
@@ -372,12 +376,15 @@ Copilot resolves conflicting instructions using **strict priority**:
 1. **System & platform policies** (GitHub, VS Code)
 2. **User request in current chat** (explicit override)
 3. **Global instructions** (`copilot-instructions.md`)
-4. **Path-specific instructions** (`.github/instructions/*.md`)
-5. **Prompt templates** (`.github/prompts/*.md`)
+4. **Repository standards** (`./docs/STANDARDS.md`, when present)
+5. **Path-specific instructions** (`.github/instructions/*.md`)
+6. **Prompt templates** (`.github/prompts/*.md`)
 
 ### Conflict Resolution Rules
 
 - **More specific rules override general rules**: A path-specific rule for `src/ml/**/*.py` beats a global Python rule
+- **Repository standards are first-class input**: If `./docs/STANDARDS.md` exists, apply
+  it explicitly before implementation and combine it with MyBro instructions
 - **Recent, justified rules win**: When specificity is equal, the most recent update with explicit rationale takes precedence
 - **Flexible guidance is preferred**: Start with guidance; only enforce strict rules when clearly required
 
@@ -529,7 +536,7 @@ Detailed documentation for specialized topics:
 
 ### Related Projects
 
-- **MyBro on GitHub**: [Hag-Zilla/MyBro](https://github.com/Hag-Zilla/MyBro)
+- **MyBro repository**: [Project root](.)
 - **cspell Dictionary**: [MyBro .github/.cspell.json](.github/.cspell.json)
 - **markdownlint Config**: [MyBro .github/.markdownlint.json](.github/.markdownlint.json)
 
@@ -610,7 +617,7 @@ For commercial use or alternative licensing, contact the maintainers.
     ⭐ If MyBro helped you, consider starring the repo!
   </p>
   <p>
-    <a href="https://github.com/Hag-Zilla/MyBro">View on GitHub</a> ·
+    <a href="./">View project files</a> ·
     <a href="https://github.com/Hag-Zilla/MyBro/issues">Report Issue</a> ·
     <a href="https://github.com/Hag-Zilla/MyBro/issues">Open Issue</a>
   </p>

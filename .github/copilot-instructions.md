@@ -18,8 +18,9 @@ quality, and prompt governance.
 1. System and platform policies
 2. User request in current chat
 3. Global instructions in this file
-4. Path-specific instructions in `.github/instructions/`
-5. Prompt templates in `.github/prompts/`
+4. Repository standards file: `./docs/STANDARDS.md` (when present in the target repo)
+5. Path-specific instructions in `.github/instructions/`
+6. Prompt templates in `.github/prompts/`
 
 ## Conflict Resolution
 
@@ -53,6 +54,16 @@ quality, and prompt governance.
   `README.md` to reflect the change before considering the task complete.
 - When proposing solutions, reference industry best practices and state-of-the-art
   approaches; explain trade-offs and justify recommendations.
+- In target repositories, if `./docs/STANDARDS.md` exists, treat it as a required source
+  of truth for development standards and align all proposals and generated code with it.
+
+### Repository Standards Integration
+
+- At the start of a coding task, explicitly check whether `./docs/STANDARDS.md` exists in
+  the current repository.
+- If present, read and apply its rules before implementing changes.
+- If a conflict appears between this file and `./docs/STANDARDS.md`, prefer the most
+  specific rule; if still ambiguous, ask a clarifying question.
 
 ### Instruction and Prompt Files
 
