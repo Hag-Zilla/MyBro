@@ -103,19 +103,25 @@ Once cloned, the `.github/copilot-instructions.md` file is automatically recogni
 3. Search for **"Copilot"** and verify that custom instructions are enabled
 4. Check the Copilot Chat panel—it should reference instructions from this repo
 
-### 3) Install Pre-commit Hooks (Recommended)
+### 3) Set Up the Development Environment
 
-Set up automated quality checks to run before each commit:
+This project uses [uv](https://docs.astral.sh/uv/) for environment and dependency management.
 
 ```bash
-pip install pre-commit
-pre-commit install
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create the virtual environment and install dev dependencies
+uv sync --group dev
+
+# Install pre-commit hooks
+uv run pre-commit install
 ```
 
 Verify the installation:
 
 ```bash
-pre-commit run --all-files
+uv run pre-commit run --all-files
 ```
 
 Expected output: ✓ All checks pass (markdownlint, cspell, link check).
@@ -148,7 +154,7 @@ Create a simple Python function with PEP 8 style, type hints, and a docstring.
 If output doesn't follow these conventions, instructions may not be loaded. Check:
 
 ```bash
-pre-commit run --all-files
+uv run pre-commit run --all-files
 ```
 
 ### 6) Advanced: Clone into Other Projects

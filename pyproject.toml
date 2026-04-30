@@ -1,0 +1,18 @@
+[project]
+name = "mybro"
+version = "0.1.0"
+description = "GitHub Copilot customization & instruction governance framework"
+readme = "README.md"
+license = { text = "CC-BY-NC-4.0" }
+requires-python = ">=3.11"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.pip]
+python-version = "3.11"
