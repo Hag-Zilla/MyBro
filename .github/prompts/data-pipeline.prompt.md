@@ -27,5 +27,5 @@ Generate a data pipeline for the described transformation following these requir
    - Unit test each stage with a small synthetic dataset
    - Test idempotency: run the pipeline twice and assert output equality
 
-Reference standards: #file:../copilot-instructions.md
-Reference data engineering rules: #file:../instructions/data-engineering.instructions.md
+Reference standards: #file:.github/copilot-instructions.md
+Reference data engineering rules: #file:.github/instructions/data-engineering.instructions.md

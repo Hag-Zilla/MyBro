@@ -25,5 +25,5 @@ requirements:
    - Pin all action versions to a semver tag; never use `@main` or `@latest`
    - Use `OIDC` for cloud credentials where possible; avoid static access keys
 
-Reference standards: #file:../copilot-instructions.md
-Reference pipeline rules: #file:../instructions/mlops-pipelines.instructions.md
+Reference standards: #file:.github/copilot-instructions.md
+Reference pipeline rules: #file:.github/instructions/mlops-pipelines.instructions.md

@@ -48,4 +48,4 @@ Generate unit tests for the following code using `pytest`:
 
 Ensure tests are concise and focused on one thing per test.
 
-Reference standards: #file:../copilot-instructions.md
+Reference standards: #file:.github/copilot-instructions.md

@@ -27,5 +27,5 @@ application following these requirements:
    - Expired token → HTTP 401
    - Insufficient role → HTTP 403
 
-Reference standards: #file:../copilot-instructions.md
-Reference auth rules: #file:../instructions/auth-security.instructions.md
+Reference standards: #file:.github/copilot-instructions.md
+Reference auth rules: #file:.github/instructions/auth-security.instructions.md

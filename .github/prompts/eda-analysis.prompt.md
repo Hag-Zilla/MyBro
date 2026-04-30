@@ -23,5 +23,5 @@ Perform exploratory data analysis on the provided dataset following these requir
    - List recommended preprocessing steps
    - List features to investigate further or drop
 
-Reference standards: #file:../copilot-instructions.md
-Reference EDA rules: #file:../instructions/eda.instructions.md
+Reference standards: #file:.github/copilot-instructions.md
+Reference EDA rules: #file:.github/instructions/eda.instructions.md

@@ -87,5 +87,5 @@ Generate Docker and Kubernetes manifests following these practices:
      values files to separate environment-specific config.
    - Never duplicate manifests across environments; patch only what differs.
 
-Reference standards: #file:../copilot-instructions.md
-Reference environment rules: #file:../instructions/environments.instructions.md
+Reference standards: #file:.github/copilot-instructions.md
+Reference environment rules: #file:.github/instructions/environments.instructions.md
