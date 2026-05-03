@@ -186,7 +186,5 @@ quality, and prompt governance.
 
 ## Branch Strategy
 
-- **`main`**: production branch — full CI/CD pipelines (lint, test, security scan, build,
-  deploy). Merges require passing all checks and at least one review.
-- **`develop`**: development/integration branch — lighter pipelines (lint + fast tests only).
-  Used for iterative work and validation before promoting to `main`.
+Branch naming, CI pipeline scope, and merge policies are defined in `./docs/STANDARDS.md`
+(present in each target repository). Refer to that file for authoritative branch rules.
