@@ -66,7 +66,7 @@ repeatable AI-assisted development behavior across repositories.
 1. Validate everything locally:
 
     ```bash
-    uv pre-commit run --all-files
+    uvx pre-commit run --all-files
     ```
 
 1. Use the bootstrap script in a target repository:
@@ -139,7 +139,8 @@ Tracked repository structure:
   │   └── workflows/
   │       └── quality.yml
   ├── scripts/
-  │   └── bootstrap-copilot.sh
+  │   ├── bootstrap-copilot.sh
+  │   └── check-links.sh
   ├── assets/
   │   └── logo.png
   ├── README.md
@@ -177,7 +178,6 @@ Language behavior is defined in `.github/copilot-instructions.md`.
 Implementation details:
 
 - Workflow file: `.github/workflows/quality.yml`
-- Link check runs only on `main` (or PRs targeting `main`)
 - Local quality uses `.pre-commit-config.yaml` with aligned tools
 
 ### Domain Coverage
