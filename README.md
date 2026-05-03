@@ -8,7 +8,7 @@
   **Built with:** Markdown · Python · GitHub Actions · pre-commit
 </div>
 
-![CI](https://img.shields.io/badge/CI-main--quality-blue.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro) ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg) ![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg) ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg) ![markdownlint](https://img.shields.io/badge/markdownlint-passing-brightgreen.svg) ![coverage](https://img.shields.io/badge/coverage-N%2FA-lightgrey.svg)
+![CI](https://img.shields.io/badge/CI-main--quality-blue.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro) ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg) ![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg) ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg) ![Quality workflow](https://img.shields.io/github/actions/workflow/status/Hag-Zilla/MyBro/quality.yml?branch=main&label=quality%20(main))
 
 ---
 
