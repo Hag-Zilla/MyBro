@@ -8,8 +8,8 @@
   **Built with:** Markdown · Python · GitHub Actions · pre-commit
 </div>
 
-[![CI](https://img.shields.io/badge/CI-main--quality-blue.svg)](https://github.com/Hag-Zilla/MyBro/actions/workflows/quality.yml) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro)](https://github.com/Hag-Zilla/MyBro/releases) [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
-[![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg)](.github/copilot-instructions.md) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml) [![Quality (main+develop)](https://img.shields.io/badge/quality-main%2Bdevelop-blue.svg)](https://github.com/Hag-Zilla/MyBro/actions/workflows/quality.yml)
+[![CI](https://github.com/Hag-Zilla/MyBro/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/Hag-Zilla/MyBro/actions/workflows/quality.yml) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hag-Zilla/MyBro)](https://github.com/Hag-Zilla/MyBro/releases) [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
+[![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-customized-black.svg)](.github/copilot-instructions.md) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
 ---
 
