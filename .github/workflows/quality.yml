@@ -30,6 +30,9 @@ jobs:
           config: .github/.cspell.json
           files: "**/*.md"
 
+      - name: Instruction contract checks
+        run: python3 scripts/validate-instruction-files.py
+
       - name: Link check
         uses: lycheeverse/lychee-action@v2
         with:

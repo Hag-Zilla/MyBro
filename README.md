@@ -140,7 +140,8 @@ Tracked repository structure:
   │       └── quality.yml
   ├── scripts/
   │   ├── bootstrap-copilot.sh
-  │   └── check-links.sh
+  │   ├── check-links.sh
+  │   └── validate-instruction-files.py
   ├── assets/
   │   └── logo.png
   ├── README.md
@@ -172,12 +173,13 @@ Language behavior is defined in `.github/copilot-instructions.md`.
 
 | Branch | Workflow Trigger | Validation Scope |
 |---|---|---|
-| `main` | push + PR | markdownlint + cspell + lychee |
-| `develop` | push + PR | markdownlint + cspell + lychee |
+| `main` | push + PR | markdownlint + cspell + instruction contract + lychee |
+| `develop` | push + PR | markdownlint + cspell + instruction contract + lychee |
 
 Implementation details:
 
 - Workflow file: `.github/workflows/quality.yml`
+- Instruction/prompt contract validator: `scripts/validate-instruction-files.py`
 - Local quality uses `.pre-commit-config.yaml` with aligned tools
 
 ### Domain Coverage
@@ -222,7 +224,7 @@ Use this workflow:
 1. Run local validation:
 
     ```bash
-    uv run pre-commit run --all-files
+    uvx pre-commit run --all-files
     ```
 
 1. Open a PR with:
@@ -232,6 +234,12 @@ Use this workflow:
 - validation evidence (checks passing)
 
 For full contribution details, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## 💬 Support
+
+---
+
+> Maintained by [Hag-Zilla](https://github.com/Hag-Zilla)
 
 ## License
 
@@ -249,6 +257,6 @@ For commercial use or alternative licensing, contact the maintainers.
     <strong>Made with 💪 for teams that love clean code and smart automation.</strong>
   </p>
   <p>
-    ⭐ If MyBro helped you, consider starring the repo!
+    ⭐ If this repo helped you, consider starring it!
   </p>
 </div>

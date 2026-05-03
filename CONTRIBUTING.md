@@ -32,15 +32,19 @@ Before merge, ensure:
 Install pre-commit hooks to validate files **before commit**:
 
 ```bash
-pip install pre-commit
-pre-commit install
+uv sync --group dev
+uv run pre-commit install
+uv run pre-commit install-hooks
 ```
 
 Then, hooks will automatically run on `git commit`. To run manually:
 
 ```bash
-pre-commit run --all-files
+uvx pre-commit run --all-files
 ```
+
+Instruction contracts are also validated automatically by
+`scripts/validate-instruction-files.py`.
 
 ## Authoring Rules
 

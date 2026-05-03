@@ -48,8 +48,20 @@ from datetime import datetime, timedelta, timezone
 from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+from pydantic_settings import BaseSettings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
+
+
+class AuthSettings(BaseSettings):
+    """Settings required for JWT verification."""
+
+    secret_key: str
+
+
+def get_secret_key() -> str:
+    """Return JWT secret key from environment-backed settings."""
+    return AuthSettings().secret_key
 
 
 def create_access_token(
@@ -71,7 +83,10 @@ def create_access_token(
     return jwt.encode({"sub": subject, "exp": expire}, secret_key, algorithm="HS256")
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme)) -> str:
+async def get_current_user(
+    token: str = Depends(oauth2_scheme),
+    secret_key: str = Depends(get_secret_key),
+) -> str:
     """Validate a JWT token and return the subject claim.
 
     Args:
@@ -84,7 +99,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> str:
         HTTPException: HTTP 401 if token is invalid or expired.
     """
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+      payload = jwt.decode(token, secret_key, algorithms=["HS256"])
         return payload["sub"]
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)

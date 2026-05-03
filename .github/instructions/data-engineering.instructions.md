@@ -73,7 +73,24 @@ def load_incremental(
             {"wm": watermark},
         ).fetchall()
     logger.info("Fetched %d rows from source", len(rows))
+    payload = [
+        {
+            "id": row.id,
+            "created_at": row.created_at,
+            "event_type": row.event_type,
+            "payload": row.payload,
+        }
+        for row in rows
+    ]
     with tgt.begin() as conn:
-        conn.execute(text("INSERT INTO events VALUES :rows"), {"rows": rows})
-    return len(rows)
+        conn.execute(
+            text(
+                """
+                INSERT INTO events (id, created_at, event_type, payload)
+                VALUES (:id, :created_at, :event_type, :payload)
+                """
+            ),
+            payload,
+        )
+    return len(payload)
 ```

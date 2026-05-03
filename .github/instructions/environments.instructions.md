@@ -41,6 +41,7 @@ injection, and environment-aware behaviour using pydantic-settings.
 ## Examples
 
 ```python
+from functools import lru_cache
 from pydantic import SecretStr, field_validator
 from pydantic_settings import BaseSettings
 
@@ -71,5 +72,8 @@ class Settings(BaseSettings):
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 
-settings = Settings()
+@lru_cache(maxsize=1)
+def get_settings() -> Settings:
+  """Build and cache application settings for dependency injection."""
+  return Settings()
 ```

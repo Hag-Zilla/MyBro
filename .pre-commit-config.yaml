@@ -27,6 +27,12 @@ repos:
   # Link checks (aligned with CI lychee settings)
   - repo: local
     hooks:
+      - id: validate-instruction-files
+        name: Instruction contract checks
+        entry: python3 scripts/validate-instruction-files.py
+        language: system
+        pass_filenames: false
+
       - id: lychee
         name: Link check (lychee)
         entry: scripts/check-links.sh
